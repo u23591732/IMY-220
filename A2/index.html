@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Voting System</title>
+   
+</head>
+<body style="background-color: rgb(185, 135, 87);">
+
+ 
+    <div style="text-align:center;">
+        <h1 style="text-align: center;text-decoration: underline;font-size: 40px;">Vote for a Pet Name </h1>
+        <br>
+        <input type="radio" id="pebble" name="name" value="Pebble" style="size: 30px;">
+        <label for="pebble" style="font-size: 30px;padding: 6px;">Pebble  |  Votes :  </label>
+        <h4 style="font-size: 30px;padding: 6px;" id="pId"> </h4>
+        <br><br>
+        <input type="radio" id="sun" name="name" value="Sunshine" style="size: 30px;">
+        <label for="sun" style="font-size: 30px;padding: 6px;">Sunshine  |  Votes :  </label>
+        <h4 style="font-size: 30px;padding: 6px;" id="sId">  </h4><br><br>
+
+        <input type="radio" id="miso" name="name" value="Miso" style="size: 30px;">
+        <label for="miso" style="font-size: 30px;padding: 6px;">Miso  |  Votes : </label>
+        <h4 style="font-size: 30px;padding: 6px;" id="mId"> </h4> <br><br>
+
+        <input type="radio" id="panko" name="name" value="Panko" style="size: 30px;">
+        <label for="panko" style="font-size: 30px;padding: 6px;">Panko  |  Votes : </label> 
+        <h4 style="font-size: 30px;padding: 6px;" id="paId"> </h4> <br><br>
+
+        <input type="radio" id="snowball" name="name" value="Snowball" style="size: 30px;">
+        <label for="snowball" style="font-size: 30px;padding: 6px;">Snowball  |  Votes : </label> 
+        <h4 style="font-size: 30px;padding: 6px;" id="snId">  </h4>
+        <br>
+        <br>
+        <button style="text-align: center;font-size: 40px;" id="voteButt" >Vote</button>
+
+    </div>
+
+    <br>
+    <br>
+    <br>
+    <div style="background-color: #f0d7b9;padding: 20px;position: fixed; bottom: 0;width: 100%;box-shadow: 0 -1px 5px rgba(0,0,0,0.1);" id="myDiv">
+        <h3 id="myHead" style="font-size: 40px;"></h3>
+        
+    </div>
+
+
+    <script src='http://localhost:3000/socket.io/socket.io.js'></script>
+    <script src="index.js"></script> 
+    
+</body>
+</html>
