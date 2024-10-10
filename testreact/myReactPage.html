@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>React Attempt</title>
+</head>
+<body>
+    <div id="root"></div>
+    
+</body>
+
+<script crossorigin
+src="https://unpkg.com/react@18/umd/react.development.js"></script>
+<script crossorigin
+src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+<script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+<script type="text/babel">
+    class Artists extends React.Component{
+
+
+
+render()
+{
+    const names = this.props.names;
+    return (
+
+        <ul>
+            {
+                  names.map((person,i) => {
+                    (<li key = {i}>{person}</li>);
+                })
+            }
+        </ul>
+
+        
+    );
+}
+
+
+}
+
+let arrArts = ["Michael Jackson","Kendrick Lamar","Jaden","Young Thug","Tupac"];
+const root = ReactDOM.createRoot(document.getElementById('root'));
+root.render(<Artists names = {arrArts} />);
+
+</script>
+
+</html>

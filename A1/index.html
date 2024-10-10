@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="author" content="Your Name" />
+    <title>IMY 220 A1</title>
+    <script src = "script.js" type = "text/javascript"></script>
+  </head>
+  <body>
+    <h1>IMY 220 A1</h1>
+    <script type = "text/javascript">
+      var pets = [
+  { name: "Polly", species: "bird", age: 1, adopted: false, adoptedDate: "", adoptionFee: 560 },
+  { name: "Fluffy", species: "dog", age: 4, adopted: true, adoptedDate: "2023-03-27",adoptionFee: 890 },
+  { name: "Daisy", species: "dog", age: 9, adopted: true, adoptedDate: "2021-01-05", adoptionFee: 780 },
+  { name: "Coco", species: "rabbit", age: 3, adopted: true, adoptedDate: "2019-01-30", adoptionFee: 615 },
+  { name: "Simba", species: "cat", age: 4, adopted: true, adoptedDate: "2019-09-30", adoptionFee: 995 },
+  { name: "Oreo", species: "rabbit", age: 4, adopted: false, adoptedDate: "", adoptionFee: 605 },
+  { name: "Bella", species: "cat", age: 6, adopted: false, adoptedDate: "", adoptionFee: 810 },
+  { name: "Milo", species: "bird", age: 3, adopted: false, adoptedDate: "", adoptionFee: 740 },
+  { name: "Buddy", species: "dog", age: 10, adopted: true, adoptedDate: "2021-02-01", adoptionFee: 735 },
+  { name: "Pebbles", species: "bird", age: 4, adopted: false, adoptedDate: "", adoptionFee: 505 },
+];
+
+      let myPetStore = new PetHandler(pets);
+      console.log(`Page has loaded`);
+
+      let ages = myPetStore.findPetsInAgeRange(5,10).listPets();
+      
+      //console.log(`${ages}`);
+
+      let orp = myPetStore.listAdoptedPetsByDate().listPets();
+      //console.log(`${orp}`);
+     
+
+      var groupPets = [{ name: "Pebbles", species: "bird", age: 4, adopted: false, adoptedDate: "", adoptionFee: 505 },{ name: "Milo", species: "bird", age: 3, adopted: false, adoptedDate: "", adoptionFee: 740 },{ name: "Oreo", species: "rabbit", age: 4, adopted: false, adoptedDate: "", adoptionFee: 605 }];
+      let myList = myPetStore.listPets(groupPets);
+      //console.log(`${myList}`);
+
+      let fee = myPetStore.calculateUniqueAdoptionFee("Milo","Coco","Milo");
+      //console.log(`${fee}`);
+      
+
+    </script>
+  </body>
+</html>
