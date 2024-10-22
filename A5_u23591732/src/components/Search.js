@@ -30,7 +30,7 @@ export class Search extends React.Component {
 
     
     this.setState({ error: null });
-    this.props.onSearch(searchQuery); 
+    this.props.onSearch(searchQuery) //call the function assigned to the onSearch prop, with searchQuery as a parameter; 
   };
 
   render() {
