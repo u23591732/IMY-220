@@ -1,0 +1,26 @@
+
+
+services:
+  app:
+    build: .
+    ports:
+      - "1337:1337"  
+    volumes:
+      - .:/usr/src/app  
+      - /usr/src/app/node_modules  
+    environment:
+      
+      - MONGO_URL=mongodb+srv://IMYuser:Eduplex2023@cluster0.1zrlw.mongodb.net/ 
+       
+    depends_on:
+      - mongo  
+
+  mongo:
+    image: mongo:latest  
+    ports:
+      - "27017:27017"  
+    volumes:
+      - mongo-data:/data/db  
+
+volumes:
+  mongo-data:

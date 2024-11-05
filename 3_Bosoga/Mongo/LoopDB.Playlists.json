@@ -1,0 +1,508 @@
+[{
+  "_id": {
+    "$oid": "66f400616e5551813edf1087"
+  },
+  "playPic": "/assets/images/group.jpg",
+  "playBio": "A mix of southern-inspired hiphop bangers and bass boosted club anthems",
+  "playUser": "jtshanbalal63",
+  "playUserId": "66f3f25e6e5551813edf1075",
+  "playGenre": "Hip-hop",
+  "playTags": [
+    "#southern",
+    "#bassboosted",
+    "#hiphop"
+  ],
+  "songs": [
+    {
+      "songPic": "./assets/images/not.jpg",
+      "songTitle": "They Not Like Us",
+      "songArtist": "Kendrick Lamar",
+      "songLink": "https://open.spotify.com/album/5JjnoGJyOxfSZUZtk2rRwZ"
+    },
+    {
+      "songPic": "./assets/images/25.jpg",
+      "songTitle": "Culture Vulture",
+      "songArtist": "25K",
+      "songLink": "https://open.spotify.com/track/02yLi7UBjdkmcdHU4fCWRx"
+    }
+  ],
+  "playName": "#004"
+},
+{
+  "_id": {
+    "$oid": "66f400616e5551813edf1085"
+  },
+  "playPic": "/assets/images/old.jpg",
+  "playBio": "Mzansi's finest oldies",
+  "playName": "Golden Oldies ",
+  "playUser": "jtshanbalal63",
+  "playUserId": "66f3f25e6e5551813edf1075",
+  "playGenre": "Pop",
+  "playTags": [
+    "#mzansi",
+    "#throwback",
+    "#classics"
+  ],
+  "songs": [
+    {
+      "songPic": "./assets/images/brenda.jpg",
+      "songTitle": "Weekend Special",
+      "songArtist": "Brenda Fassie , The Big Dudes",
+      "songLink": "https://open.spotify.com/album/4kMkz62CkGCUVGoPzv0hJP"
+    },
+    {
+      "songPic": "./assets/images/not.jpg",
+      "songTitle": "Music In The Air",
+      "songArtist": "Letta Mbulu , Caiphus Semenya",
+      "songLink": "https://open.spotify.com/track/5CQaB5tweelW95KQUn1j2S"
+    }
+  ]
+},
+{
+  "_id": {
+    "$oid": "66f400616e5551813edf1089"
+  },
+  "playPic": "/assets/images/summer.jpg",
+  "playBio": "The perfect mix to kickstart the summer time ! ",
+  "playName": "Summer belongs to us",
+  "playUser": "1a1a1and",
+  "playUserId": "66f3f25e6e5551813edf1078",
+  "playGenre": "Dance",
+  "playTags": [
+    "#afrobeats",
+    "#summer",
+    "#outdoors",
+    "#vibes "
+  ],
+  "songs": [
+    {
+      "songPic": "./assets/images/not.jpg",
+      "songTitle": "They Not Like Us",
+      "songArtist": "Kendrick Lamar",
+      "songLink": "https://open.spotify.com/album/5JjnoGJyOxfSZUZtk2rRwZ"
+    },
+    {
+      "songPic": "./assets/images/sup.jpg",
+      "songTitle": "Superman",
+      "songArtist": "Black Coffee",
+      "songLink": "https://open.spotify.com/track/752l1xT5G1OHzg71ZBnTyZ"
+    }
+  ]
+},
+{
+  "_id": {
+    "$oid": "66f400616e5551813edf1086"
+  },
+  "playPic": "/assets/images/group.jpg",
+  "playBio": "A mix of southern-inspired hiphop bangers and bass boosted club anthems",
+  "playUser": "test@test.com",
+  "playUserId": "66f3f25e6e5551813edf1076",
+  "playGenre": "Hip-hop",
+  "playTags": [
+    "#southern",
+    "#bassboosted",
+    "#hiphop"
+  ],
+  "songs": [
+    {
+      "songPic": "./assets/images/not.jpg",
+      "songTitle": "They Not Like Us",
+      "songArtist": "Kendrick Lamar",
+      "songLink": "https://open.spotify.com/album/5JjnoGJyOxfSZUZtk2rRwZ"
+    },
+    {
+      "songPic": "./assets/images/not.jpg",
+      "songTitle": "They Not Like Us",
+      "songArtist": "Kendrick Lamar",
+      "songLink": "https://open.spotify.com/album/5JjnoGJyOxfSZUZtk2rRwZ"
+    }
+  ],
+  "playName": "#002"
+},
+{
+  "_id": {
+    "$oid": "66f400616e5551813edf1088"
+  },
+  "playPic": "/assets/images/rock.jpg",
+  "playBio": "A short compilation of modern takes on the rock genre",
+  "playName": "Modern rock ",
+  "playUser": "susanheartsmusic",
+  "playUserId": "66f3f25e6e5551813edf1077",
+  "playGenre": "Rock 'n Roll",
+  "playTags": [
+    "#modern",
+    "#alt",
+    "#rock",
+    "#softrock "
+  ],
+  "songs": [
+    {
+      "songPic": "./assets/images/psy.jpg",
+      "songTitle": "Psycho",
+      "songArtist": "Post Malone , Ty Dolla $ign",
+      "songLink": "https://open.spotify.com/track/3HvDMcPNrXheHcJuvXyN68"
+    },
+    {
+      "songPic": "./assets/images/black.jpg",
+      "songTitle": "Black Beatles",
+      "songArtist": "Rae Sremmurd",
+      "songLink": "https://open.spotify.com/track/6fujklziTHa8uoM5OQSfIo"
+    }
+  ]
+},
+{
+  "_id": {
+    "$oid": "66fa564afe628a26d436d48e"
+  },
+  "playPic": "/assets/images/poppy.jpg",
+  "playBio": "Radio ready tunes from the freshest talent currently",
+  "playName": "Up and coming pop stars",
+  "playUser": "mj",
+  "playUserId": "66f97a9961c8b2869af8ee2a",
+  "playGenre": "Pop",
+  "playTags": [
+    "#pop",
+    "#new",
+    "#freshtalent",
+    "#young",
+    "#hard"
+  ],
+  "songs": [
+    {
+      "songPic": "/assets/images/brenda.jpg",
+      "songTitle": "Weekend Special",
+      "songArtist": "Brenda Fassie, The Big Dudes",
+      "songLink": "https://open.spotify.com/album/4kMkz62CkGCUVGoPzv0hJP"
+    },
+    {
+      "songPic": "/assets/images/star.jpg",
+      "songTitle": "Blinding Lights",
+      "songArtist": "The Weeknd",
+      "songLink": "https://open.spotify.com/album/3sL9Myf7JF1k9TbrXE46ou"
+    },
+    {
+      "songPic": "/assets/images/psy.jpg",
+      "songTitle": "Psycho",
+      "songArtist": "Post Malone , Ty Dolla $ign ",
+      "songLink ": "https://open.spotify.com/track/3HvDMcPNrXheHcJuvXyN68"
+    },
+    {
+      "songPic": "/assets/images/sup.jpg",
+      "songTitle": "Superman",
+      "songArtist": "Black Coffee",
+      "songLink": "https://open.spotify.com/track/752l1xT5G1OHzg71ZBnTyZ"
+    }
+  ]
+},
+{
+  "_id": {
+    "$oid": "6717453c7b340e6755b7a434"
+  },
+  "playPic": "/assets/images/rise.jpg",
+  "playBio": "Let's get the vibes right before a productive day ! ",
+  "playUser": "jtshanbalal63",
+  "playUserId": "66f3f25e6e5551813edf1075",
+  "playGenre": "House",
+  "playTags": [
+    "#wakeup",
+    "#risenshine",
+    "#new",
+    "#fresh"
+  ],
+  "songs": [
+    {
+      "songPic": "./assets/images/kel.jpg",
+      "songTitle": "Gumbaya ",
+      "songArtist": "Kelvin Momo , George Lesley",
+      "songLink": "https://open.spotify.com/track/4jVC0GW0rBrbfhc4j1rECr"
+    },
+    {
+      "songPic": "./assets/images/tayo.jpg",
+      "songTitle": "Selema (Popo)",
+      "songArtist": "Musa Keys",
+      "songLink": "https://open.spotify.com/track/2UNdr8gnOQrVkSmLDeC59w"
+    },
+    {
+      "songPic": "./assets/images/sup.jpg",
+      "songTitle": "Superman ",
+      "songArtist": "Black Coffee",
+      "songLink": "https://open.spotify.com/track/752l1xT5G1OHzg71ZBnTyZ"
+    },
+    {
+      "songPic": "./assets/images/vida.jpg",
+      "songTitle": "La Vida ",
+      "songArtist": "Mi Casa",
+      "songLink": "https://open.spotify.com/track/7gQksloWyQsHviHltJZ10Z"
+    }
+  ],
+  "playName": "risengrind"
+},
+{
+  "_id": {
+    "$oid": "671748a37b340e6755b7a43e"
+  },
+  "playPic": "/assets/images/picnic.jpg",
+  "playBio": "Made this on holiday at the beach ",
+  "playUser": "rmb123",
+  "playUserId": "670ad43c43315b87403c9783",
+  "playGenre": "Chill",
+  "playTags": [
+    "#beachside",
+    "#chill",
+    "#calm",
+    "#summer"
+  ],
+  "songs": [
+    {
+      "songPic": "./assets/images/miley.jpg",
+      "songTitle": "Malibu ",
+      "songArtist": "Miley Cyrus",
+      "songLink": "https://open.spotify.com/album/7CUczABBlsbd5fqng9mjxo"
+    },
+    {
+      "songPic": "./assets/images/banana.jpg",
+      "songTitle": "Banana Clip",
+      "songArtist": "Miguel",
+      "songLink": "https://open.spotify.com/track/6xagjcywpcyNFghafZPQJv"
+    },
+    {
+      "songPic": "./assets/images/sparkle.jpg",
+      "songTitle": "Halleluyah Nkateko",
+      "songArtist": "Joyous Celebration",
+      "songLink": "https://open.spotify.com/track/5J3JjHSjDEkLXJiFXSLA6b"
+    }
+  ],
+  "playName": "Beach Jams"
+},
+{
+  "_id": {
+    "$oid": "671755cf7b340e6755b7a477"
+  },
+  "playPic": "/assets/images/friday.jpg",
+  "playBio": "End the week off with a bang!!!",
+  "playName": "#TGIF ",
+  "playUser": "test@test.com",
+  "playUserId": "66f3f25e6e5551813edf1076",
+  "playGenre": "Uptempo",
+  "playTags": [
+    "#friday",
+    "#fun",
+    "#energy"
+  ],
+  "songs": [
+    {
+      "songPic": "./assets/images/monks.png",
+      "songTitle": "Monks",
+      "songArtist": "Frank Ocean",
+      "songLink": "https://open.spotify.com/track/0msrDPXxZpts4FRnoX0bFr"
+    },
+    {
+      "songPic": "./assets/images/master.jpg",
+      "songTitle": "Moya oncwele",
+      "songArtist": "Master KG , Nkosazana Daughter",
+      "songLink": "https://open.spotify.com/track/4Zy1GFdZeuvkMzmsfEzcnW"
+    },
+    {
+      "songPic": "./assets/images/star.jpg",
+      "songTitle": "Blinding Lights",
+      "songArtist": "The Weeknd",
+      "songLink": "https://open.spotify.com/album/3sL9Myf7JF1k9TbrXE46ou"
+    },
+    {
+      "songPic": "./assets/images/wayne.jpg",
+      "songTitle": "6 Foot 7 Foot",
+      "songArtist": "Lil Wayne , Cory Gunz",
+      "songLink": "https://open.spotify.com/album/2ujH47k81THz8PEnexo0vA"
+    },
+    {
+      "songPic": "./assets/images/bad.jpg",
+      "songTitle": "Billie Jean",
+      "songArtist": "Michael Jackson",
+      "songLink": "https://open.spotify.com/track/5ChkMS8OtdzJeqyybCc9R5"
+    }
+  ]
+},
+{
+  "_id": {
+    "$oid": "6728d0d9e04c66fdd498e6e4"
+  },
+  "playBio": "That playlist when you just wanna...",
+  "playGenre": "house",
+  "playName": "Gospel Sundays",
+  "playPic": "/assets/images/channel.jpg",
+  "playTags": "#morningglory #praise #worship",
+  "playUser": "test@test.com",
+  "playUserId": null,
+  "songs": [
+    {
+      "songPic": "C:\\fakepath\\channel.jpg",
+      "songArtist": "Daniel Caesar",
+      "songTitle": "Full Moon",
+      "songLink": "https://open.spotify.com/album/3Fqjb0gzWbJglEdf4HX5uw"
+    },
+    {
+      "songPic": "C:\\fakepath\\damn.jpg",
+      "songArtist": "Brandy",
+      "songTitle": "Full Moon",
+      "songLink": "https://open.spotify.com/album/7ajinfMarX5qfnr2AVnye9"
+    }
+  ]
+},
+{
+  "_id": {
+    "$oid": "6729bdd34aada849105eb2a3"
+  },
+  "playBio": "The number one playlist for lovers on a sunday",
+  "playGenre": "soul",
+  "playName": "Sunday Jams",
+  "playPic": "/assets/images/billie.jpg",
+  "playTags": "#cool #strictly4grownups #calm",
+  "playUser": "test@test.com",
+  "playUserId": "66f3f25e6e5551813edf1076",
+  "songs": [
+    {
+      "songPic": "C:\\fakepath\\costa.jpg",
+      "songArtist": "Brent Faiyaz,Marshmallow",
+      "songTitle": "Fall in love",
+      "songLink": "https://open.spotify.com/track/1N8klHEbZ0bFOHnMVs8C9S"
+    },
+    {
+      "songPic": "C:\\fakepath\\damn.jpg",
+      "songArtist": "Steve Lacy,Amanda Stenberg",
+      "songTitle": "Amanda's Interlude",
+      "songLink": "https://open.spotify.com/track/13HOw2SzGkOKUMV35K6yhs"
+    }
+  ]
+},
+{
+  "_id": {
+    "$oid": "6729c270f8efc5085d0f1d59"
+  },
+  "playBio": "The perfect sunday for some quality time with your lover...",
+  "playGenre": "pop",
+  "playName": "Sunday Jams",
+  "playPic": "/assets/images/channel.jpg",
+  "playTags": "#love #grownUp #smooch #sundays",
+  "playUser": "test@test.com",
+  "playUserId": "66f3f25e6e5551813edf1076",
+  "songs": [
+    {
+      "songPic": "C:\\fakepath\\chloe.jpg",
+      "songArtist": "Brent Faiyaz",
+      "songTitle": "Fell In Love",
+      "songLink": "https://open.spotify.com/track/1N8klHEbZ0bFOHnMVs8C9S"
+    },
+    {
+      "songPic": "C:\\fakepath\\sab.jpg",
+      "songArtist": "Steve Lacy , Amandla Stenberg",
+      "songTitle": "Amandla's Interlude",
+      "songLink": "https://open.spotify.com/track/13HOw2SzGkOKUMV35K6yhs"
+    }
+  ]
+},
+{
+  "_id": {
+    "$oid": "6729c78dc4214483b514312d"
+  },
+  "playBio": "This one starts the weekend nca",
+  "playGenre": "dance",
+  "playName": "For the weekend",
+  "playPic": "/assets/images/channel.jpg",
+  "playTags": "#theOne #asambe",
+  "playUser": "test@test.com",
+  "playUserId": "66f3f25e6e5551813edf1076",
+  "songs": [
+    {
+      "songPic": "C:\\fakepath\\damn.jpg",
+      "songArtist": "Brent Faiyaz,Marshmallow",
+      "songTitle": "Fell  In Love",
+      "songLink": "https://open.spotify.com/track/1N8klHEbZ0bFOHnMVs8C9S"
+    },
+    {
+      "songPic": "C:\\fakepath\\billie.jpg",
+      "songArtist": "Steve Lacy , Amandla Stenberg ",
+      "songTitle": "Amandla's Interlude",
+      "songLink": "https://open.spotify.com/track/13HOw2SzGkOKUMV35K6yhs"
+    }
+  ]
+},
+{
+  "_id": {
+    "$oid": "6729ca1bec05b914e08d2f11"
+  },
+  "playBio": "Ola we are ending the weekend",
+  "playGenre": "dance",
+  "playName": "Ending the Week",
+  "playPic": "/assets/images/costa.jpg",
+  "playTags": "#this #back2basics",
+  "playUser": "test@test.com",
+  "playUserId": "66f3f25e6e5551813edf1076",
+  "songs": [
+    {
+      "songPic": "C:\\fakepath\\damn.jpg",
+      "songArtist": "Brent Faiyaz , Marshmallow",
+      "songTitle": "Fell In Love",
+      "songLink": "https://open.spotify.com/track/1N8klHEbZ0bFOHnMVs8C9S"
+    },
+    {
+      "songPic": "C:\\fakepath\\channel.jpg",
+      "songArtist": "Steve Lacy , Amandla Stenberg",
+      "songTitle": "Amandla's Interlude",
+      "songLink": "https://open.spotify.com/track/13HOw2SzGkOKUMV35K6yhs"
+    }
+  ]
+},
+{
+  "_id": {
+    "$oid": "6729cbdf70b98bebbfa72183"
+  },
+  "playBio": "The coolest jazz to get your groove on",
+  "playGenre": "dance",
+  "playName": "Di Jazz",
+  "playPic": "/assets/images/channel.jpg",
+  "playTags": "#groovy #jazz #turnt",
+  "playUser": "test@test.com",
+  "playUserId": "66f3f25e6e5551813edf1076",
+  "songs": [
+    {
+      "songPic": "C:\\fakepath\\chloe.jpg",
+      "songArtist": "Brent faiyaz , Marshmallow",
+      "songTitle": "Fell In Love",
+      "songLink": "https://open.spotify.com/track/1N8klHEbZ0bFOHnMVs8C9S"
+    },
+    {
+      "songPic": "C:\\fakepath\\billie.jpg",
+      "songArtist": "Steve Lacy , Amandla Stenberg",
+      "songTitle": "Amandla's Stenberg",
+      "songLink": "https://open.spotify.com/track/13HOw2SzGkOKUMV35K6yhs"
+    }
+  ]
+},
+{
+  "_id": {
+    "$oid": "672a08d0371cdf96779f9e60"
+  },
+  "playBio": "We are closing it ",
+  "playGenre": "house",
+  "playName": "The Last One",
+  "playPic": "/assets/images/channel.jpg",
+  "playTags": "#final #end #last",
+  "playUser": "test@test.com",
+  "playUserId": "66f3f25e6e5551813edf1076",
+  "songs": [
+    {
+      "songTitle": "Funk 55",
+      "songArtist": "Zee Nxumalo , Shakes and Les",
+      "songLink": "https://open.spotify.com/track/5CD3ImPPdCW8QFQkjo5TXt",
+      "songPic": "/assets/images/stevie.jpg",
+      "deleted": false
+    },
+    {
+      "songTitle": "Petrol",
+      "songArtist": "Justin 99 ",
+      "songLink": "https://open.spotify.com/album/2PBe3yfo7nM7Mb8cb5oop9",
+      "songPic": "/assets/images/testing.jpg",
+      "deleted": false
+    }
+  ]
+}]
