@@ -1,0 +1,180 @@
+[{
+  "_id": {
+    "$oid": "66f3e0756e5551813edf1068"
+  },
+  "songPic": "/assets/images/tayo.jpg",
+  "songTitle": "Selema (Popo)",
+  "songArtist": "Musa Keys",
+  "songLink": "https://open.spotify.com/track/2UNdr8gnOQrVkSmLDeC59w",
+  "deleted": "false"
+},
+{
+  "_id": {
+    "$oid": "66f3e0756e5551813edf1067"
+  },
+  "songPic": "/assets/images/not.jpg",
+  "songTitle": "They Not Like Us",
+  "songArtist": "Kendrick Lamar",
+  "songLink": "https://open.spotify.com/album/5JjnoGJyOxfSZUZtk2rRwZ",
+  "deleted": "false"
+},
+{
+  "_id": {
+    "$oid": "66f3e0756e5551813edf106e"
+  },
+  "songPic": "/assets/images/psy.jpg",
+  "songTitle": "Psycho",
+  "songArtist": "Post Malone, Ty Dolla $ign",
+  "songLink": "https://open.spotify.com/track/3HvDMcPNrXheHcJuvXyN68",
+  "deleted": "false"
+},
+{
+  "_id": {
+    "$oid": "66f3e0756e5551813edf106a"
+  },
+  "songPic": "/assets/images/kel.jpg",
+  "songTitle": "Soul to Soul",
+  "songArtist": "Kelvin Momo, Babalwa M",
+  "songLink": "https://open.spotify.com/track/6r5ke34zVTYuCW3uuE153z",
+  "deleted": "false"
+},
+{
+  "_id": {
+    "$oid": "66f3e0756e5551813edf106c"
+  },
+  "songPic": "/assets/images/25.jpg",
+  "songTitle": "Culture Vulture",
+  "songArtist": "25K",
+  "songLink": "https://open.spotify.com/track/02yLi7UBjdkmcdHU4fCWRx",
+  "deleted": "false"
+},
+{
+  "_id": {
+    "$oid": "66f3e0756e5551813edf106f"
+  },
+  "songPic": "/assets/images/sup.jpg",
+  "songTitle": "Superman",
+  "songArtist": "Black Coffee",
+  "songLink": "https://open.spotify.com/track/752l1xT5G1OHzg71ZBnTyZ",
+  "deleted": "false"
+},
+{
+  "_id": {
+    "$oid": "66f3e0756e5551813edf1069"
+  },
+  "songPic": "/assets/images/black.jpg",
+  "songTitle": "Black Beattles",
+  "songArtist": "Rae Sremmurd",
+  "songLink": "https://open.spotify.com/track/6fujklziTHa8uoM5OQSfIo",
+  "deleted": "false"
+},
+{
+  "_id": {
+    "$oid": "66f3e0756e5551813edf106b"
+  },
+  "songPic": "/assets/images/slim.jpg",
+  "songTitle": "The Real Slim Shady",
+  "songArtist": "Eminem",
+  "songLink": "https://open.spotify.com/track/3yfqSUWxFvZELEM4PmlwIR",
+  "deleted": "true"
+},
+{
+  "_id": {
+    "$oid": "66f3e0756e5551813edf106d"
+  },
+  "songPic": "/assets/images/star.jpg",
+  "songTitle": "Blinding Lights",
+  "songArtist": "The Weeknd",
+  "songLink": "https://open.spotify.com/album/3sL9Myf7JF1k9TbrXE46ou",
+  "deleted": "false"
+},
+{
+  "_id": {
+    "$oid": "66f3e0756e5551813edf1070"
+  },
+  "songPic": "/assets/images/bad.jpg",
+  "songTitle": "Billie Jean",
+  "songArtist": "Michael Jackson",
+  "songLink": "https://open.spotify.com/track/5ChkMS8OtdzJeqyybCc9R5",
+  "deleted": "false"
+},
+{
+  "_id": {
+    "$oid": "66fa4e3dc776ffe48aa02868"
+  },
+  "songPic": "/assets//images//master.jpg",
+  "songTitle": " Moya oncwele",
+  "songArtist": "Master KG , Nkosazana Daughter",
+  "songLink": "https://open.spotify.com/track/4Zy1GFdZeuvkMzmsfEzcnW",
+  "deleted": "false"
+},
+{
+  "_id": {
+    "$oid": "6716ba9f2f20651075712808"
+  },
+  "songPic": "/assets/images/wayne.jpg",
+  "songTitle": "6 Foot 7 Foot",
+  "songArtist": "Lil Wayne , Cory Gunz",
+  "songLink": "https://open.spotify.com/album/2ujH47k81THz8PEnexo0vA",
+  "deleted": "false"
+},
+{
+  "_id": {
+    "$oid": "6716bb312f2065107571280a"
+  },
+  "songPic": "/assets/images/monks.png",
+  "songTitle": "Monks",
+  "songArtist": "Frank Ocean",
+  "songLink": "https://open.spotify.com/track/0msrDPXxZpts4FRnoX0bFr",
+  "deleted": "false"
+},
+{
+  "_id": {
+    "$oid": "6716bb922f2065107571280c"
+  },
+  "songPic": "/assets/images/banana.jpg",
+  "songTitle": "Banana Clip",
+  "songArtist": "Miguel",
+  "songLink": "https://open.spotify.com/track/6xagjcywpcyNFghafZPQJv",
+  "deleted": "false"
+},
+{
+  "_id": {
+    "$oid": "6716bc082f2065107571280e"
+  },
+  "songPic": "/assets/images/miley.jpg",
+  "songTitle": "Malibu",
+  "songArtist": "Miley Cyrus",
+  "songLink": "https://open.spotify.com/album/7CUczABBlsbd5fqng9mjxo",
+  "deleted": "false"
+},
+{
+  "_id": {
+    "$oid": "6716bc892f20651075712810"
+  },
+  "songPic": "/assets/images/vida.jpg",
+  "songTitle": "La Vida",
+  "songArtist": "Mi Casa",
+  "songLink": "https://open.spotify.com/track/7gQksloWyQsHviHltJZ10Z",
+  "deleted": "false"
+},
+{
+  "_id": {
+    "$oid": "6717485f7b340e6755b7a43a"
+  },
+  "songPic": "/assets/images/sparkle.jpg",
+  "songTitle": "Halleluyah Nkateko",
+  "songArtist": "Joyous Celebration",
+  "songLink": "https://open.spotify.com/track/5J3JjHSjDEkLXJiFXSLA6b",
+  "deleted": "false"
+},
+{
+  "_id": {
+    "$oid": "672a04e0c1f2b7f1b789afc2"
+  },
+  "songPic": "/assets/images/damn.jpg",
+  "songTitle": "Platinum",
+  "songArtist": "Emtee",
+  "songLink": "https://open.spotify.com/track/1E6AAgKdFGgsLelcVzawzi",
+  "deleted": false
+}]

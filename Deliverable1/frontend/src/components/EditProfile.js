@@ -1,213 +1,244 @@
 import React from "react";
-export class EditProfile extends React.Component{
-    constructor(props)
-    {
-        super(props);
-        this.social = this.social.bind(this.social);
+
+export class EditProfile extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      profilePic: "",
+      fullName: "",
+      userName: "",
+      pronouns: "",
+      bio: "",
+      insta: "",
+      ex: "",
+      tik: "",
+    };
+    this.social = this.social.bind(this);
+    this.handleInputChange = this.handleInputChange.bind(this);
+    this.handleImageChange = this.handleImageChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
+  }
+
+  componentDidMount() {
+    // Fetch the user's current data
+    fetch(`/user/${this.props.userId}`)
+      .then(response => response.json())
+      .then(data => {
+        this.setState({
+          profilePic: data.profilePic,
+          fullName: data.fullName,
+          userName: data.userName,
+          pronouns: data.pronouns,
+          bio: data.bio,
+          insta: data.insta,
+          ex: data.ex,
+          tik: data.tik,
+        });
+      })
+      .catch(error => console.error("Error fetching user data:", error));
+  }
+
+  handleInputChange(event) {
+    const { name, value } = event.target;
+    this.setState({ [name]: value });
+  }
+
+  handleImageChange(event) {
+    const file = event.target.files[0];
+    if (file) {
+      // Extract the file name
+      const fileName = file.name;
+      // Prepend the desired path
+      const imagePath = `/assets/images/${fileName}`;
+      // Set the profilePic state to the constructed path
+      this.setState({ profilePic: imagePath });
     }
+  }
 
-    social()
-    {
-        var insta = document.getElementById('hideLink1');
-        var ex = document.getElementById('hideLink2');
-        var tiktok = document.getElementById('hideLink3');
+  social() {
+    const socialFields = ["insta", "ex", "tik"];
+    socialFields.forEach(field => {
+      const displayStyle = document.getElementById(`${field}Yes`).checked ? "block" : "none";
+      document.getElementById(`hideLink${field}`).style.display = displayStyle;
+    });
+  }
 
-        var inChe = document.getElementById('instaYes');
-        var exChe = document.getElementById('xYes');
-        var tikChe = document.getElementById('tiktokYes');
+  handleSubmit(event) {
+    event.preventDefault();
+    const userData = {
+      profilePic: this.state.profilePic, // This will be the constructed path
+      fullName: this.state.fullName,
+      userName: this.state.userName,
+      pronouns: this.state.pronouns,
+      bio: this.state.bio,
+      insta: this.state.insta,
+      ex: this.state.ex,
+      tik: this.state.tik,
+    };
 
-        if(inChe.checked == true)
-        {
-            insta.style.display = 'block';
-        }
+    fetch(`/users/${this.props.userId}`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({userData}), // Sending the JSON object directly
+    })
+      .then(response => response.json())
+      .then(data => alert(data.message))
+      .catch(error => console.error("Error updating user data:", error));
+  }
 
-       if(inChe.checked == false)
-        {
-            insta.style.display = 'none';
-        }
+  render() {
+    return (
+      <form onSubmit={this.handleSubmit} style={{ backgroundColor: "#3F6751", textAlign: "center", padding: "25px" }}>
+        <h3 style={{ fontSize: "20px", color: "white", fontFamily: "Geneva, Verdana, sans-serif" }}>Update your details:</h3>
 
-        if(exChe.checked == true)
-            {
-                ex.style.display = 'block';
-            }
-         if(exChe.checked == false)
-            {
-                ex.style.display = 'none';
-            }
-
-         if(tikChe.checked == true)
-                {
-                    tiktok.style.display = 'block';
-                }
-           if(tikChe.checked == false)
-                {
-                    tiktok.style.display = 'none';
-                }
-
-        
-
-    }
-
-    render()
-    {
-        return (
-            <div style={{backgroundColor:'#3F6751',textAlign : 'center',padding:'25px'}}>
-            <h3 style={{fontSize : '20px',color : 'white',fontFamily:'Geneva, Verdana, sans-serif'}}>Update your details : </h3>
-            
-            <div></div> 
-            <div style={{textAlign:'center',padding:'15px',borderRadius:'50%'} }><img src={this.props.profilePic}></img></div>
-            <label style={{ display: 'block', marginBottom: '5px' }}>Profile photo</label>
-            <div style={{ marginBottom: '20px' }}>
-        <label style={{ display: 'block', marginBottom: '5px' }}>Change profile photo :</label>
-        <input 
-          type="file" 
-          
-        />
-      </div>
-        <div style={{ maxWidth: '600px', margin: 'auto', padding: '20px' }}>
-      <div style={{ marginBottom: '20px' }}>
-        <label style={{ display: 'block', marginBottom: '5px' }}>Full Name:</label>
-        <input 
-          type="text" 
-          style={{ width: '100%', padding: '8px', border: '1px solid #ccc', borderRadius: '4px', boxSizing: 'border-box' }} 
-          defaultValue={this.props.fullName}
-        />
-      </div>
-
-     
-
-      <div style={{ marginBottom: '20px' }}>
-        <label style={{ display: 'block', marginBottom: '5px' }}>Username:</label>
-        <input 
-          type="text" 
-          style={{ width: '100%', padding: '8px', border: '1px solid #ccc', borderRadius: '4px', boxSizing: 'border-box' }} 
-          placeholder="Pick any unique name you would like to go by!" 
-          defaultValue={this.props.userName}
-        />
-      </div>
-
-      <div style={{ marginBottom: '20px' }}>
-        <label style={{ display: 'block', marginBottom: '5px' }} htmlFor="pros">Pronouns:</label>
-        <select 
-          id="pros" 
-          style={{ width: '100%', padding: '8px', border: '1px solid #ccc', borderRadius: '4px', boxSizing: 'border-box' }}
-        >
-          <option value="him">He/Him</option>
-          <option value="her">She/Her</option>
-          <option value="them">They/Them</option>
-          <option value="its">It/Its</option>
-          <option value="other">Other</option>
-        </select>
-      </div>
-
-      <div style={{ marginBottom: '20px' }}>
-        <label style={{ display: 'block', marginBottom: '5px' }} htmlFor="bio">Bio:</label>
-        <textarea 
-          id="bio" 
-          style={{ width: '100%', height: '120px', padding: '8px', border: '1px solid #ccc', borderRadius: '4px', boxSizing: 'border-box' }} 
-          placeholder="Let us know a bit more about yourself and your music taste"
-          defaultValue={this.props.bio}
-        />
-      </div>
-
-      <div style={{ marginBottom: '20px' }}>
-        <label style={{ display: 'block', marginBottom: '5px' }}>Link your Social Media:</label>
-            <br/>
-            <br/>
-        <div style={{ paddingLeft: '5px' }}>
-          <label style={{ display: 'flex', alignItems: 'center', marginBottom: '10px' }}>
-            Instagram:
-            <img 
-              src="./assets/images/insta.jpg" 
-              alt="Instagram" 
-              style={{ height: '35px', width: '35px', borderRadius: '50%', marginLeft: '10px' }} 
-            />
-            <br/> &nbsp; &nbsp; &nbsp; 
-            <input type="radio" id="instaYes" name="insta" value="Yes" style={{ marginRight: '5px' }} onChange={this.social}/>
-            <label htmlFor="instaYes" style={{ marginRight: '15px' }}>Yes</label>
-            <input type="radio" id="instaNo" name="insta" value="No" style={{ marginRight: '5px' }} onChange={this.social} />
-            <label htmlFor="instaNo">No</label>
-            
-          </label>
-          <br/>
-            <span id="hideLink1" style={{ display: 'block' }}>
-              <label style={{ display: 'block', marginBottom: '5px' }}>Handle:</label>
-              <input 
-                type="text" 
-                
-                style={{ width: '100%', padding: '8px', border: '1px solid #ccc', borderRadius: '4px', boxSizing: 'border-box' }} 
-                defaultValue={this.props.insta}
-              />
-            </span>
-            <br/>
-
-          <label style={{ display: 'flex', alignItems: 'center', marginBottom: '10px' }}>
-            X:
-            <img 
-              src="./assets/images/ex.png" 
-              alt="X" 
-              style={{ height: '35px', width: '35px', borderRadius: '50%', marginLeft: '10px' }} 
-            />
-            <br/> &nbsp; &nbsp; &nbsp;
-            <input type="radio" id="xYes" name="x" value="Yes" style={{ marginRight: '5px' }} onChange={this.social} />
-            <label htmlFor="xYes" style={{ marginRight: '15px' }}>Yes</label>
-            <input type="radio" id="xNo" name="x" value="No" style={{ marginRight: '5px' }} onChange={this.social} />
-            <label htmlFor="xNo">No</label>
-            <br/>
-            
-          </label>
-          <span id="hideLink2" style={{ display: 'block' }}>
-              <label style={{ display: 'block', marginBottom: '5px' }}>Handle:</label>
-              <input 
-                type="text" 
-                
-                style={{ width: '100%', padding: '8px', border: '1px solid #ccc', borderRadius: '4px', boxSizing: 'border-box' }} 
-                defaultValue={this.props.ex}
-              />
-            </span>
-           
-            <br/>
-          <label style={{ display: 'flex', alignItems: 'center', marginBottom: '10px' }}>
-            TikTok:
-            <img 
-              src="./assets/images/tik.png" 
-              alt="TikTok" 
-              style={{ height: '35px', width: '35px', borderRadius: '50%', marginLeft: '10px' }} 
-            />
-            <br/> &nbsp; &nbsp; &nbsp; 
-            <input type="radio" id="tiktokYes" name="tiktok" value="Yes" style={{ marginRight: '5px' }} onChange={this.social}/>
-            <label htmlFor="tiktokYes" style={{ marginRight: '15px' }}>Yes</label>
-            <input type="radio" id="tiktokNo" name="tiktok" value="No" style={{ marginRight: '5px' }} onChange={this.social}/>
-            <label htmlFor="tiktokNo">No</label>
-            <br/>
-          </label>
-          <span id="hideLink3" style={{ display: 'yes' }}>
-              <label style={{ display: 'block', marginBottom: '5px' }}>Handle:</label>
-              <input 
-                type="text" 
-                
-                style={{ width: '100%', padding: '8px', border: '1px solid #ccc', borderRadius: '4px', boxSizing: 'border-box' }} 
-                defaultValue={this.props.tik}
-              />
-            </span>
-            <br/>
+        <div style={{ textAlign: "center", padding: "15px", borderRadius: "50%" }}>
+    <img 
+      src={this.state.profilePic} 
+      alt="Profile" 
+      style={{ 
+        display: "block", // Ensures the image is treated as a block element
+        margin: "0 auto", // Centers the image horizontally
+        maxWidth: "150px", // Increased size for the image
+        maxHeight: "150px", // Increased size for the image
+        borderRadius: "50%", // Makes the image round
+      }} 
+    />
+  </div>
+  <br/>
+  <br/>
+        <label style={{ display: "block", marginBottom: "5px" }}>Profile photo</label>
+        <br/>
+        <div style={{ marginBottom: "20px" }}>
+          <label>Change profile photo:</label>
+          <input type="file" name="profilePic" onChange={this.handleImageChange} />
         </div>
-      </div>
 
-      <div style={{ textAlign: 'center' }}>
-        <button 
-          type="submit" 
-         style={{ fontSize: '18px', color: 'white', padding: '10px 20px', border: 'none', borderRadius: '4px', backgroundColor: '#24392F', cursor: 'pointer' }}
-        >
-          Update Profile
-        </button>
-      </div>
-    </div>
+        <div style={{ maxWidth: "600px", margin: "auto", padding: "20px" }}>
+          <div style={{ marginBottom: "20px" }}>
+            <label>Full Name:</label>
+            <input
+              type="text"
+              name="fullName"
+              value={this.state.fullName}
+              onChange={this.handleInputChange}
+              style={{ width: "100%", padding: "8px" }}
+            />
+          </div>
 
+          <div style={{ marginBottom: "20px" }}>
+            <label>Username:</label>
+            <input
+              type="text"
+              name="userName"
+              value={this.state.userName}
+              onChange={this.handleInputChange}
+              style={{ width: "100%", padding: "8px" }}
+            />
+          </div>
 
-    </div>
+          <div style={{ marginBottom: "20px" }}>
+            <label htmlFor="pros">Pronouns:</label>
+            <select
+              id="pros"
+              name="pronouns"
+              value={this.state.pronouns}
+              onChange={this.handleInputChange}
+              style={{ width: "100%", padding: "8px" }}
+            >
+              <option value="him">He/Him</option>
+              <option value="her">She/Her</option>
+              <option value="them">They/Them</option>
+              <option value="its">It/Its</option>
+              <option value="other">Other</option>
+            </select>
+          </div>
 
-            
-        )
-    }
+          <div style={{ marginBottom: "20px" }}>
+            <label htmlFor="bio">Bio: </label>
+            <textarea
+              id="bio"
+              name="bio"
+              value={this.state.bio}
+              onChange={this.handleInputChange}
+              style={{ width: "100%", height: "120px", padding: "8px" }}
+            />
+          </div>
+
+          {/* Social Media Section */}
+          <div style={{ marginBottom: "20px" }}>
+            <label>Link your Social Media:</label>
+            <br />
+            <br />
+            {/* Instagram */}
+            <div style={{ paddingLeft: "5px" }}>
+              <label>Instagram:</label>
+              <input type="radio" id="instaYes" name="instaRadio" onChange={this.social} /> Yes
+              <input type="radio" id="instaNo" name="instaRadio" onChange={this.social} /> No
+              <span id="hideLinkinsta" style={{ display: "block" }}>
+                <label>Handle:</label>
+                <input
+                  type="text"
+                  name="insta"
+                  value={this.state.insta}
+                  onChange={this.handleInputChange}
+                  style={{ width: "100%", padding: "8px" }}
+                />
+              </span>
+            </div>
+            {/* X (Twitter) */}
+            <div style={{ paddingLeft: "5px" }}>
+              <label>X:</label>
+              <input type="radio" id="xYes" name="xRadio" onChange={this.social} /> Yes
+              <input type="radio" id="xNo" name="xRadio" onChange={this.social} /> No
+              <span id="hideLinkex" style={{ display: "block" }}>
+                <label>Handle:</label>
+                <input
+                  type="text"
+                  name="ex"
+                  value={this.state.ex}
+                  onChange={this.handleInputChange}
+                  style={{ width: "100%", padding: "8px" }}
+                />
+              </span>
+            </div>
+            {/* TikTok */}
+            <div style={{ paddingLeft: "5px" }}>
+              <label>TikTok:</label>
+              <input type="radio" id="tiktokYes" name="tiktokRadio" onChange={this.social} /> Yes
+              <input type="radio" id="tiktokNo" name="tiktokRadio" onChange={this.social} /> No
+              <span id="hideLinktik" style={{ display: "block" }}>
+                <label>Handle:</label>
+                <input
+                  type="text"
+                  name="tik"
+                  value={this.state.tik}
+                  onChange={this.handleInputChange}
+                  style={{ width: "100%", padding: "8px" }}
+                />
+              </span>
+            </div>
+          </div>
+
+          <div style={{ textAlign: "center" }}>
+            <button
+              type="submit"
+              style={{
+                fontSize: "18px",
+                color: "white",
+                padding: "10px 20px",
+                border: "none",
+                borderRadius: "4px",
+                backgroundColor: "#24392F",
+                cursor: "pointer",
+              }}
+            >
+              Update Profile
+            </button>
+          </div>
+        </div>
+      </form>
+    );
+  }
 }

@@ -1,0 +1,233 @@
+[{
+  "_id": {
+    "$oid": "66f3f25e6e5551813edf1075"
+  },
+  "profilePic": "/assets/images/kendra.jpg",
+  "fullName": "Joyce Tshabalala",
+  "userName": "jtshanbalal63",
+  "pronouns": "She/Her",
+  "bio": "23 year old music journalist with a passion for old school hip-hop and rnb & shit , so send a friend request if you know some good throwbacks!",
+  "insta": "@joycehearts90s",
+  "ex": "@joyce63hearts90s",
+  "tik": "None",
+  "password": "user1",
+  "friends": []
+},
+{
+  "_id": {
+    "$oid": "66f3f25e6e5551813edf1076"
+  },
+  "profilePic": "/assets/images/flower.jpg",
+  "fullName": "Thomas Greggfield",
+  "userName": "test@test.com",
+  "pronouns": "He/Him",
+  "bio": "Hey , part-time dj here always on the lookout for more music to add to my sets - so share the latest club bangers on your playlist!",
+  "insta": "@tomthedon16",
+  "ex": "@tomdonsixteen",
+  "tik": "tomm3d0n",
+  "password": "test1234",
+  "friends": [
+    "66f3f25e6e5551813edf1078",
+    "66f3f25e6e5551813edf1075"
+  ]
+},
+{
+  "_id": {
+    "$oid": "66f3f25e6e5551813edf1077"
+  },
+  "profilePic": "/assets/images/suzie.jpg",
+  "fullName": "Susan Boyde",
+  "userName": "susanheartsmusic",
+  "pronouns": "She/Her",
+  "bio": "If your'e into kpop we'll get along 불처럼 빠르게",
+  "insta": "@k_imsusan",
+  "ex": "@susankamsamhida",
+  "tik": "@kim-suzie-won",
+  "password": "user3",
+  "friends": [
+    "670ad43c43315b87403c9783",
+    "66f3f25e6e5551813edf1076"
+  ]
+},
+{
+  "_id": {
+    "$oid": "66f3f25e6e5551813edf1078"
+  },
+  "profilePic": "/assets/images/lala.jpg",
+  "fullName": "Viola Kipchoke",
+  "userName": "1a1a1and",
+  "pronouns": "She/Her",
+  "bio": "Are you ooking for afro-beat tunes and summer time vibes?look no further cos you're girls' got it all",
+  "insta": "@1lalaland",
+  "ex": "@mylalaland_com",
+  "tik": "@la_lalandd",
+  "password": "user4",
+  "friends": []
+},
+{
+  "_id": {
+    "$oid": "66f3f25e6e5551813edf1079"
+  },
+  "profilePic": "/assets/images/hector.jpg",
+  "fullName": "Hector Swartz",
+  "userName": "hectordanefield44",
+  "pronouns": "He/Him",
+  "bio": "I am a former touring drummer,who now prefers more laidback music,why not help me reform my music taste ;) ",
+  "insta": "@hectogotnectar23",
+  "ex": "@hectorgotnectar23",
+  "tik": "@hector4hunn_eez",
+  "password": "user5",
+  "friends": [
+    "670ad43c43315b87403c9783",
+    "66f3f25e6e5551813edf1077"
+  ]
+},
+{
+  "_id": {
+    "$oid": "66f3f25e6e5551813edf107a"
+  },
+  "profilePic": "/assets/images/chloe.jpg",
+  "fullName": "Chloe Harper",
+  "userName": "wakeupchloe",
+  "pronouns": "She/Her",
+  "bio": "i am rocknroll diehard based in Hatfield :0 feel free to hmu for local rock fests and the like ",
+  "insta": "@wakeupclowee",
+  "ex": "@chloedoyouknowme",
+  "tik": "@chl03wakeup",
+  "password": "user6",
+  "friends": []
+},
+{
+  "_id": {
+    "$oid": "66f9740208519f53b510c182"
+  },
+  "profilePic": "/assets/images/shaq.jpg",
+  "fullName": "Shaq O'neal",
+  "userName": "bigshaq",
+  "pronouns": "He/Him",
+  "bio": "Shaq will go down as having the best dance mix compilations",
+  "insta": "shaqoneal",
+  "ex": null,
+  "tik": null,
+  "password": "user7",
+  "friends": []
+},
+{
+  "_id": {
+    "$oid": "66f97a9961c8b2869af8ee2a"
+  },
+  "profilePic": "/assets/images/mike.jpg",
+  "fullName": "Michael Jackson",
+  "userName": "mj",
+  "pronouns": "He/Him",
+  "bio": "I enjoy pop music and share hot music from emerging artists.",
+  "insta": "mjpopmusic",
+  "ex": null,
+  "tik": null,
+  "password": "user8",
+  "friends": [
+    "66f3f25e6e5551813edf1078",
+    "670ad43c43315b87403c9783",
+    "66f3f25e6e5551813edf1077"
+  ]
+},
+{
+  "_id": {
+    "$oid": "66f97b9361c8b2869af8ee2b"
+  },
+  "profilePic": "/assets/images/ice.jpg",
+  "fullName": "O'Shea Jackson",
+  "userName": "icecube",
+  "pronouns": "He/Him",
+  "bio": "Today was  a good day",
+  "insta": "icecoldcube",
+  "ex": "icecubex",
+  "tik": "none",
+  "password": "user9",
+  "friends": [
+    "66f3f25e6e5551813edf1076",
+    "66f3f25e6e5551813edf1075"
+  ]
+},
+{
+  "_id": {
+    "$oid": "66fcee7061186a5e2f295faf"
+  },
+  "profilePic": "/assets/images/teves.jpg",
+  "fullName": "Carlos Teves",
+  "userName": "carltv",
+  "pronouns": "him",
+  "bio": "Mi no ablas ingles",
+  "insta": "carlostvreal",
+  "ex": null,
+  "tik": "carlostv88",
+  "password": "user10",
+  "friends": [
+    "66f3f25e6e5551813edf1075"
+  ]
+},
+{
+  "_id": {
+    "$oid": "66fcf3c199d069c02ed25967"
+  },
+  "profilePic": "/assets/images/jcold.jpg",
+  "fullName": "JordanColdturkey",
+  "userName": "jcold",
+  "pronouns": "He/Him",
+  "bio": "I like to unwind to some private school amapiano,the likes of kabza de small,kelvin momo ,stixx etc...",
+  "insta": "none",
+  "ex": "none",
+  "tik": "none",
+  "password": "user11",
+  "friends": []
+},
+{
+  "_id": {
+    "$oid": "66fd08b64dcb7d22a91b6231"
+  },
+  "profilePic": "/assets/images/maru.jpg",
+  "fullName": "MaropengMashao",
+  "userName": "maru16",
+  "pronouns": "He/Him",
+  "bio": "I hate south african music to be honest",
+  "insta": "maru16intown",
+  "ex": "maru16intown",
+  "tik": "none",
+  "password": "user12",
+  "friends": [
+    "66f3f25e6e5551813edf1076",
+    "66f97a9961c8b2869af8ee2a"
+  ]
+},
+{
+  "_id": {
+    "$oid": "670ad43c43315b87403c9783"
+  },
+  "profilePic": "/assets/images/rene.jpg",
+  "fullName": "ReneilweMichelle",
+  "userName": "rmb123",
+  "pronouns": "She/Her",
+  "bio": "I enjoy the slower paced music as I find it calming.",
+  "insta": "@michelle123",
+  "ex": "@michelle123",
+  "tik": "@michelle123",
+  "password": "user13",
+  "friends": [
+    "66f3f25e6e5551813edf1075",
+    "66f3f25e6e5551813edf1075"
+  ]
+},
+{
+  "_id": {
+    "$oid": "67278e74cb2ef27cc82f3c0c"
+  },
+  "profilePic": {},
+  "fullName": "Jeremy Doku",
+  "userName": "jaydee1",
+  "pronouns": "He/Him",
+  "bio": "I like heavy-thumping trap and aggressive basslines in my music playlists when I am working out.",
+  "insta": "jaydeemancity",
+  "ex": "none",
+  "tik": "jaydeemanc1ty",
+  "password": "user16"
+}]

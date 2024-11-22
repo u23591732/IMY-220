@@ -9,12 +9,15 @@ const uri ="mongodb+srv://IMYuser:Eduplex2023@cluster0.1zrlw.mongodb.net/?retryW
 const client = new MongoClient(uri);
 import "regenerator-runtime/runtime";
 const Users = require('../Users');
+const UserPlaylists = require('../UserPlaylists');
 const Songs = require('../Songs');
 const Playlists = require('../Playlists');
 const Comments = require('../Comments');
 const SongList = require('../SongLists');
+const Images = require('../Images');
 
-app.listen(1337, async function () {
+
+app.listen(1337,'0.0.0.0', async function () {
   await connectToDatabase();
   console.log("Listening on localhost:1337");
 });
@@ -24,6 +27,8 @@ let users;
 let comments;
 let songs;
 let songlists;
+let userplaylists;
+let images;
 
 
 
@@ -39,6 +44,9 @@ async function connectToDatabase() {
     playlists = new Playlists(db);
     songs = new Songs(db);
     songlists = new SongList(db);
+    userplaylists = new UserPlaylists(db);
+    images = new Images(db);
+
     console.log('Access to Users collection');
   } catch (error) {
     console.error('Error connecting to MongoDB:', error);
@@ -69,6 +77,22 @@ app.get('/user/:id', async (req, res) => {
     res.status(500).send({ error: error.message });
   }
 });
+
+//Route to tretreive a user's friends
+app.get('/userFriends/:id', async (req, res) => {
+  try {
+    const user = await users.findUserFriends(req.params.id); 
+    if (user) {
+      res.status(200).send(user);
+    } else {
+      res.status(404).send({ error: 'User not found' });
+    }
+  } catch (error) {
+    res.status(500).send({ error: error.message });
+  }
+});
+
+
 
 // Route to get a user by userName
 app.get('/username/:name', async (req, res) => {
@@ -120,6 +144,7 @@ app.delete('/users/:id', async (req, res) => {
 //*******************Song routes************************************
 // Route to insert a new song
 app.post('/addSong', async (req, res) => {
+  console.log("Received song data:", req.body.songData); 
   try {
     const songId = await songs.insertSong(req.body.songData); 
     res.status(201).send({ message: 'Song successfully inserted', id: songId });
@@ -157,8 +182,8 @@ app.get('/songTitle/:title', async (req, res) => {
   }
 });
 
-// Route to get a song by spotify link
 
+// Route to get a song by spotify link
 app.post('/songLink', async (req, res) => {
   try {
     const song = await songs.findSongByLink(req.body.link);
@@ -205,21 +230,49 @@ app.delete('/songs/:id', async (req, res) => {
 });
 
 //*******************Playlist routes************************************
+
+
 // Route to insert a new playlist
 app.post('/addPlay', async (req, res) => {
   try {
-    const playId = await playlists.insertPlay(req.body.playData); 
-    res.status(201).send({ message: 'Playlist successfully created', id: playId });
-    console.log('Playlist successfully inserted with ID: ' + playId);
+    // Step 1: Create the new playlist in the Playlists collection
+    const { playBio, playGenre, playName, playPic, playTags, playUser, playUserId, songs } = req.body;
+    const playData = { playBio, playGenre, playName, playPic, playTags, playUser, playUserId, songs };
+    const playId = await playlists.insertPlay(playData); 
+    console.log('Playlist successfully inserted with ID:', playId);
+
+    // Step 2: Fetch the user's friends from the Users collection
+    const user = await users.findUserById(playUserId);
+    const friendIds = user?.friends || []; // Get the friend IDs array
+
+    // Step 3: For each friend, add the new playlist to their UserPlaylist collection
+    await Promise.all(friendIds.map(async (friendId) => {
+      // Fetch each friend's details to get their userName
+      const friend = await users.findUserById(friendId);
+      const friendUserName = friend?.userName || "Unknown";  // Default to "Unknown" if userName not found
+
+      // Prepare play data for each friend's UserPlaylist
+      const friendPlayData = {
+        userID: friendId,
+        userName: friendUserName,  // Use the friend's username
+        playName,
+        playId
+      };
+
+      // Add or update the UserPlaylist for each friend
+      await userplaylists.insertOrUpdateUserPlay(friendPlayData);
+    }));
+
+    res.status(201).send({ message: 'Playlist successfully created and added to friends' });
   } catch (error) {
+    console.error(error);
     res.status(500).send({ error: error.message });
   }
 });
-
 // Route to get a playlist by ID
-app.get('/playlist/:id', async (req, res) => {
+app.get('/playlist/:id/:saved', async (req, res) => {
   try {
-    const player = await playlists.findPlayById(req.params.id); 
+    const player = await playlists.findPlayById(req.params.id,req.params.saved); 
     if (player) {
       res.status(200).send(player);
     } else { 
@@ -231,7 +284,6 @@ app.get('/playlist/:id', async (req, res) => {
 });
 
 // Route to get a playlist by name
-
 app.get('/playlistName/:playName', async (req, res) => {
   try {
     const play = await playlists.findPlayByName(req.params.playName); 
@@ -312,6 +364,7 @@ app.post('/playlistTags', async (req, res) => {
   }
 });
 
+
 // Route to update a playlists details
 app.put('/playlists/:id', async (req, res) => {
   try {
@@ -341,7 +394,9 @@ app.delete('/playlists/:id', async (req, res) => {
 });
 
 
+
 //*******************Comment routes************************************
+
 // Route to insert by comment
 app.post('/addComment', async (req, res) => {
   try {
@@ -413,7 +468,7 @@ app.delete('/comment/:id', async (req, res) => {
 });
 
 
-
+//Route to add a song to a users songlist
 app.post('/user/:id/addSong', async (req, res) => {
   const userID = req.params.id;
   const songID = req.body.songID; 
@@ -429,7 +484,7 @@ app.post('/user/:id/addSong', async (req, res) => {
 app.get('/user/songList/:id', async (req, res) => {
   const userID = req.params.id; 
 
-  try {
+  try{
       
       const songList = await songlists.getUserSongList(userID);
       res.status(200).send({ songs: songList.songs });
@@ -476,3 +531,200 @@ async function searchAcrossCollections(query) {
       playlists: playlistResults
   };
 }
+
+//*******************User Playlist routes************************************
+
+// Route to insert a new UserPlaylist document
+app.post('/addUserPlay', async (req, res) => {
+  try {
+    const playId = await userplaylists.insertPlay(req.body.playData); 
+    res.status(201).send({ message: 'Playlist successfully created', id: playId });
+    console.log('Playlist successfully inserted with ID: ' + playId);
+  } catch (error) {
+    res.status(500).send({ error: error.message });
+  }
+});
+
+app.post('/user/createSongList', async (req, res) => {
+  const { userID, userName, songs } = req.body;
+
+  try {
+    const result = await songlists.insertSongList({
+      userID,
+      userName,
+      songs,
+    });
+
+    res.status(201).json({ message: result });
+  } catch (error) {
+    console.error("Error creating song list:", error);
+    res.status(500).json({ error: "Failed to create song list" });
+  }
+});
+// Route to get a playlist by ID
+app.get('/userPlaylist/:id', async (req, res) => {
+  try {
+    const player = await userplaylists.findPlayById(req.params.id); 
+    if (player) {
+      res.status(200).send(player);
+    } else { 
+      res.status(404).send({ error: 'Playlist not found' });
+    }
+  } catch (error) {
+    res.status(500).send({ error: error.message });
+  }
+});
+
+
+// Route to get a playlist by name
+app.get('/userPlaylistName/:playName', async (req, res) => {
+  try {
+    const playName = req.params.playName;
+
+    // Query to find a playlist where at least one play within `plays` has a matching name
+    const playlist = await userplaylists.collection.findOne({
+      'plays.name': playName,
+    }, {
+      projection: {
+        plays: { $elemMatch: { name: playName } } // Retrieve only the matched play within `plays`
+      }
+    });
+
+    if (playlist && playlist.plays.length > 0) {
+      const play = playlist.plays[0]; // Since we matched only one play, it will be the first element in the array
+      res.status(200).send(play);
+    } else {
+      res.status(404).send({ error: 'Playlist not found' });
+    }
+  } catch (error) {
+    res.status(500).send({ error: error.message });
+  }
+});
+
+
+// Route to get a playlist by username
+app.get('/userPlaylistUser/:userName', async (req, res) => {
+  try {
+    
+    const play = await userplaylists.findPlayByUserName(req.params.userName); 
+    if (play) {
+      res.status(200).send(play);
+    } else {
+      res.status(404).send({ error: 'Playlist not found' });
+    }
+  } catch (error) {
+    res.status(500).send({ error: error.message });
+  }
+});
+
+
+// Route to get a playlist by userID
+app.get('/userPlaylistUserID/:userID', async (req, res) => {
+  try {
+    const player = await userplaylists.findPlayByUserID(req.params.userID); 
+    if (player) {
+      res.status(200).send(player);
+    } else {
+      res.status(404).send({ error: 'Playlist not found' });
+    }
+  } catch (error) {
+    res.status(500).send({ error: error.message });
+  }
+});
+
+
+// Route to get a playlist by genre
+app.get('/userPlaylistGenre/:genre', async (req, res) => {
+  try {
+    const player = await userplaylists.findPlayByGenre(req.params.genre); 
+    if (player) {
+      res.status(200).send(player);
+    } else {
+      res.status(404).send({ error: 'Playlist not found' });
+    }
+  } catch (error) {
+    res.status(500).send({ error: error.message });
+  }
+});
+
+// Route to get a playlist by tags
+app.post('/userPlaylistTags', async (req, res) => {
+  try {
+    let tags = req.body.tags;
+
+    // Ensure 'tags' is an array
+    if (!Array.isArray(tags)) {
+      throw new Error('Tags should be an array');
+    }
+
+    const player = await userplaylists.findPlayByTags(tags);
+
+    if (player) {
+      res.status(200).send(player);
+    } else {
+      res.status(404).send({ error: 'No matching playlists found' });
+    }
+  } catch (error) {
+    res.status(500).send({ error: error.message });
+  }
+});
+
+
+// Route to update a playlists details
+app.put('/userPlaylists/:id', async (req, res) => {
+  try {
+    const updated = await userplaylists.updateUserPlay(req.params.id, req.body.playData); 
+    if (updated) {
+      res.status(200).send({ message: 'Playlist details successfully updated' });
+    } else {
+      res.status(404).send({ error: 'Playlist not found' });
+    }
+  } catch (error) {
+    res.status(500).send({ error: error.message });
+  }
+});
+
+
+// Route to delete a playlist
+app.delete('/userPlaylists/:id', async (req, res) => {
+  try {
+    const deleted = await userplaylists.deletePlay(req.params.id); 
+    if (deleted) {
+      res.status(200).send({ message: 'Playlist successfully deleted' });
+    } else {
+      res.status(404).send({ error: 'Playlist not found' });
+    }
+  } catch (error) {
+    res.status(500).send({ error: error.message });
+  }
+});
+
+
+//images 
+app.post('/api/images', async (req, res) => {
+  
+  try {
+    const response = await images.insertImage(req.body);
+    res.status(201).json({ message: response });
+  } catch (error) {
+    res.status(400).json({ error: error.message });
+  }
+});
+
+app.get('/api/images/:name', async (req, res) => {
+  try {
+    const image = await images.findImageByName(req.params.name);
+    res.json({ rep: image.rep });
+  } catch (error) {
+    res.status(404).json({ error: error.message });
+  }
+});
+
+app.delete('/api/images/:name', async (req, res) => {
+  try {
+    const response = await images.deleteImageByName(req.params.name);
+    res.json({ message: response });
+  } catch (error) {
+    res.status(404).json({ error: error.message });
+  }
+});

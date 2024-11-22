@@ -1,0 +1,215 @@
+[{
+  "_id": {
+    "$oid": "6716b4922f206510757127ff"
+  },
+  "userName": "rmb123",
+  "userID": "670ad43c43315b87403c9783",
+  "plays": [
+    {
+      "name": "Golden Oldies",
+      "id": "66f400616e5551813edf1085 ",
+      "saved": "true"
+    },
+    {
+      "name": "Summer belongs to us",
+      "id": " 66f400616e5551813edf1089",
+      "saved": "true"
+    }
+  ]
+},
+{
+  "_id": {
+    "$oid": "6716b5d92f20651075712804"
+  },
+  "userName": "maru16",
+  "userID": "66fd08b64dcb7d22a91b6231",
+  "plays": [
+    {
+      "name": "#002",
+      "id": "66f400616e5551813edf1086 ",
+      "saved": "true"
+    },
+    {
+      "name": "Up and coming pop stars",
+      "id": "66fa564afe628a26d436d48e",
+      "saved": "true"
+    }
+  ]
+},
+{
+  "_id": {
+    "$oid": "671749c97b340e6755b7a447"
+  },
+  "userName": "carltv",
+  "userID": "66f97b9361c8b2869af8ee2b",
+  "plays": [
+    {
+      "name": "#004",
+      "id": "66f400616e5551813edf1087 ",
+      "saved": "true"
+    }
+  ]
+},
+{
+  "_id": {
+    "$oid": "67174abf7b340e6755b7a44e"
+  },
+  "userName": "mj",
+  "userID": "66f97a9961c8b2869af8ee2a",
+  "plays": [
+    {
+      "name": "Summer belongs to us",
+      "id": "66f400616e5551813edf1089 ",
+      "saved": "true"
+    },
+    {
+      "name": "Modern rock ",
+      "id": "66f400616e5551813edf1088 ",
+      "saved": "true"
+    },
+    {
+      "name": "Beach Jams",
+      "id": "671748a37b340e6755b7a43e ",
+      "saved": "true"
+    }
+  ]
+},
+{
+  "_id": {
+    "$oid": "67174fab7b340e6755b7a455"
+  },
+  "userName": "icecube",
+  "userID": "66f97b9361c8b2869af8ee2b",
+  "plays": [
+    {
+      "name": "#002",
+      "id": "66f400616e5551813edf1086",
+      "saved": "true"
+    },
+    {
+      "name": "#004",
+      "id": "66f400616e5551813edf1087",
+      "saved": "true"
+    }
+  ]
+},
+{
+  "_id": {
+    "$oid": "671750717b340e6755b7a45c"
+  },
+  "userName": "hectordanefield44",
+  "userID": "66f3f25e6e5551813edf1079",
+  "plays": [
+    {
+      "name": "Beach Jams",
+      "id": "671748a37b340e6755b7a43e",
+      "saved": "true"
+    },
+    {
+      "name": "Modern rock",
+      "id": "66f400616e5551813edf1088",
+      "saved": "true"
+    }
+  ]
+},
+{
+  "_id": {
+    "$oid": "6717516e7b340e6755b7a463"
+  },
+  "userName": "jtshanbalal63",
+  "userID": "66f3f25e6e5551813edf1075",
+  "plays": [
+    {
+      "name": "Golden Oldies",
+      "id": "66f400616e5551813edf1085",
+      "saved": "true"
+    },
+    {
+      "name": "Up and coming pop stars",
+      "id": "66fa564afe628a26d436d48e",
+      "saved": "true"
+    },
+    {
+      "name": "risengrind",
+      "id": "6717453c7b340e6755b7a434",
+      "saved": "true"
+    },
+    {
+      "name": "Di Jazz",
+      "id": "6729cbdf70b98bebbfa72183",
+      "saved": false
+    },
+    {
+      "name": "The Last One",
+      "id": "672a08d0371cdf96779f9e60",
+      "saved": false
+    }
+  ]
+},
+{
+  "_id": {
+    "$oid": "671756797b340e6755b7a47f"
+  },
+  "userName": "susanheartsmusic",
+  "userID": "66f3f25e6e5551813edf1077",
+  "plays": [
+    {
+      "name": "#TGIF",
+      "id": "671755cf7b340e6755b7a477",
+      "saved": "true"
+    },
+    {
+      "name": "Beach Jams",
+      "id": "671748a37b340e6755b7a43e",
+      "saved": "true"
+    }
+  ]
+},
+{
+  "_id": {
+    "$oid": "6717576f7b340e6755b7a485"
+  },
+  "userName": "test@test.com",
+  "userID": "66f3f25e6e5551813edf1076",
+  "plays": [
+    {
+      "name": "#TGIF",
+      "id": "671755cf7b340e6755b7a477",
+      "saved": "true"
+    },
+    {
+      "name": "#004",
+      "id": "66f400616e5551813edf1087",
+      "saved": "true"
+    },
+    {
+      "name": "Summer belongs to us",
+      "id": "66f400616e5551813edf1089",
+      "saved": "true"
+    },
+    {
+      "name": "#002",
+      "id": "66f400616e5551813edf1086",
+      "saved": "true"
+    }
+  ]
+},
+{
+  "_id": {
+    "$oid": "6729cbdf70b98bebbfa72184"
+  },
+  "userName": "1a1a1and",
+  "userID": "66f3f25e6e5551813edf1078",
+  "plays": [
+    {
+      "name": "Di Jazz",
+      "id": "6729cbdf70b98bebbfa72183",
+      "saved": false
+    },
+    {
+      "name": "The Last One",
+      "id": "672a08d0371cdf96779f9e60",
+      "saved": false
+    }
+  ]
+}]

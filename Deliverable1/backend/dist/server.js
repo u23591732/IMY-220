@@ -13,11 +13,13 @@ var _require = require("mongodb"),
 var uri = "mongodb+srv://IMYuser:Eduplex2023@cluster0.1zrlw.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0";
 var client = new MongoClient(uri);
 var Users = require('../Users');
+var UserPlaylists = require('../UserPlaylists');
 var Songs = require('../Songs');
 var Playlists = require('../Playlists');
 var Comments = require('../Comments');
 var SongList = require('../SongLists');
-app.listen(1337, /*#__PURE__*/_asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee() {
+var Images = require('../Images');
+app.listen(1337, '0.0.0.0', /*#__PURE__*/_asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee() {
   return _regeneratorRuntime().wrap(function _callee$(_context) {
     while (1) switch (_context.prev = _context.next) {
       case 0:
@@ -36,6 +38,8 @@ var users;
 var comments;
 var songs;
 var songlists;
+var userplaylists;
+var images;
 app.use(express.json());
 
 // Connect to MongoDB and initialize the Players class
@@ -43,13 +47,13 @@ function connectToDatabase() {
   return _connectToDatabase.apply(this, arguments);
 } // *******************User routes************************************
 function _connectToDatabase() {
-  _connectToDatabase = _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee29() {
+  _connectToDatabase = _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee44() {
     var db;
-    return _regeneratorRuntime().wrap(function _callee29$(_context29) {
-      while (1) switch (_context29.prev = _context29.next) {
+    return _regeneratorRuntime().wrap(function _callee44$(_context44) {
+      while (1) switch (_context44.prev = _context44.next) {
         case 0:
-          _context29.prev = 0;
-          _context29.next = 3;
+          _context44.prev = 0;
+          _context44.next = 3;
           return client.connect();
         case 3:
           db = client.db('LoopDB');
@@ -58,18 +62,20 @@ function _connectToDatabase() {
           playlists = new Playlists(db);
           songs = new Songs(db);
           songlists = new SongList(db);
+          userplaylists = new UserPlaylists(db);
+          images = new Images(db);
           console.log('Access to Users collection');
-          _context29.next = 15;
+          _context44.next = 17;
           break;
-        case 12:
-          _context29.prev = 12;
-          _context29.t0 = _context29["catch"](0);
-          console.error('Error connecting to MongoDB:', _context29.t0);
-        case 15:
+        case 14:
+          _context44.prev = 14;
+          _context44.t0 = _context44["catch"](0);
+          console.error('Error connecting to MongoDB:', _context44.t0);
+        case 17:
         case "end":
-          return _context29.stop();
+          return _context44.stop();
       }
-    }, _callee29, null, [[0, 12]]);
+    }, _callee44, null, [[0, 14]]);
   }));
   return _connectToDatabase.apply(this, arguments);
 }
@@ -146,8 +152,8 @@ app.get('/user/:id', /*#__PURE__*/function () {
   };
 }());
 
-// Route to get a user by userName
-app.get('/username/:name', /*#__PURE__*/function () {
+//Route to tretreive a user's friends
+app.get('/userFriends/:id', /*#__PURE__*/function () {
   var _ref4 = _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee4(req, res) {
     var user;
     return _regeneratorRuntime().wrap(function _callee4$(_context4) {
@@ -155,7 +161,7 @@ app.get('/username/:name', /*#__PURE__*/function () {
         case 0:
           _context4.prev = 0;
           _context4.next = 3;
-          return users.findUserByName(req.params.name);
+          return users.findUserFriends(req.params.id);
         case 3:
           user = _context4.sent;
           if (user) {
@@ -184,22 +190,20 @@ app.get('/username/:name', /*#__PURE__*/function () {
   };
 }());
 
-// Route to update a user's details
-app.put('/users/:id', /*#__PURE__*/function () {
+// Route to get a user by userName
+app.get('/username/:name', /*#__PURE__*/function () {
   var _ref5 = _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee5(req, res) {
-    var updated;
+    var user;
     return _regeneratorRuntime().wrap(function _callee5$(_context5) {
       while (1) switch (_context5.prev = _context5.next) {
         case 0:
           _context5.prev = 0;
           _context5.next = 3;
-          return users.updateUser(req.params.id, req.body.userData);
+          return users.findUserByName(req.params.name);
         case 3:
-          updated = _context5.sent;
-          if (updated) {
-            res.status(200).send({
-              message: 'User successfully details updated'
-            });
+          user = _context5.sent;
+          if (user) {
+            res.status(200).send(user);
           } else {
             res.status(404).send({
               error: 'User not found'
@@ -224,21 +228,21 @@ app.put('/users/:id', /*#__PURE__*/function () {
   };
 }());
 
-// Route to delete a user
-app["delete"]('/users/:id', /*#__PURE__*/function () {
+// Route to update a user's details
+app.put('/users/:id', /*#__PURE__*/function () {
   var _ref6 = _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee6(req, res) {
-    var deleted;
+    var updated;
     return _regeneratorRuntime().wrap(function _callee6$(_context6) {
       while (1) switch (_context6.prev = _context6.next) {
         case 0:
           _context6.prev = 0;
           _context6.next = 3;
-          return users.deleteUser(req.params.id);
+          return users.updateUser(req.params.id, req.body.userData);
         case 3:
-          deleted = _context6.sent;
-          if (deleted) {
+          updated = _context6.sent;
+          if (updated) {
             res.status(200).send({
-              message: 'User successfully deleted'
+              message: 'User successfully details updated'
             });
           } else {
             res.status(404).send({
@@ -264,83 +268,86 @@ app["delete"]('/users/:id', /*#__PURE__*/function () {
   };
 }());
 
-//*******************Song routes************************************
-// Route to insert a new song
-app.post('/addSong', /*#__PURE__*/function () {
+// Route to delete a user
+app["delete"]('/users/:id', /*#__PURE__*/function () {
   var _ref7 = _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee7(req, res) {
-    var songId;
+    var deleted;
     return _regeneratorRuntime().wrap(function _callee7$(_context7) {
       while (1) switch (_context7.prev = _context7.next) {
         case 0:
           _context7.prev = 0;
           _context7.next = 3;
-          return songs.insertSong(req.body.songData);
+          return users.deleteUser(req.params.id);
         case 3:
-          songId = _context7.sent;
-          res.status(201).send({
-            message: 'Song successfully inserted',
-            id: songId
-          });
-          console.log('Song successfully inserted with ID: ' + songId);
-          _context7.next = 11;
+          deleted = _context7.sent;
+          if (deleted) {
+            res.status(200).send({
+              message: 'User successfully deleted'
+            });
+          } else {
+            res.status(404).send({
+              error: 'User not found'
+            });
+          }
+          _context7.next = 10;
           break;
-        case 8:
-          _context7.prev = 8;
+        case 7:
+          _context7.prev = 7;
           _context7.t0 = _context7["catch"](0);
           res.status(500).send({
             error: _context7.t0.message
           });
-        case 11:
+        case 10:
         case "end":
           return _context7.stop();
       }
-    }, _callee7, null, [[0, 8]]);
+    }, _callee7, null, [[0, 7]]);
   }));
   return function (_x11, _x12) {
     return _ref7.apply(this, arguments);
   };
 }());
 
-// Route to get a song by ID
-app.get('/song/:id', /*#__PURE__*/function () {
+//*******************Song routes************************************
+// Route to insert a new song
+app.post('/addSong', /*#__PURE__*/function () {
   var _ref8 = _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee8(req, res) {
-    var song;
+    var songId;
     return _regeneratorRuntime().wrap(function _callee8$(_context8) {
       while (1) switch (_context8.prev = _context8.next) {
         case 0:
-          _context8.prev = 0;
-          _context8.next = 3;
-          return songs.findSongById(req.params.id);
-        case 3:
-          song = _context8.sent;
-          if (song) {
-            res.status(200).send(song);
-          } else {
-            res.status(404).send({
-              error: 'Song not found'
-            });
-          }
-          _context8.next = 10;
+          console.log("Received song data:", req.body.songData);
+          _context8.prev = 1;
+          _context8.next = 4;
+          return songs.insertSong(req.body.songData);
+        case 4:
+          songId = _context8.sent;
+          res.status(201).send({
+            message: 'Song successfully inserted',
+            id: songId
+          });
+          console.log('Song successfully inserted with ID: ' + songId);
+          _context8.next = 12;
           break;
-        case 7:
-          _context8.prev = 7;
-          _context8.t0 = _context8["catch"](0);
+        case 9:
+          _context8.prev = 9;
+          _context8.t0 = _context8["catch"](1);
           res.status(500).send({
             error: _context8.t0.message
           });
-        case 10:
+        case 12:
         case "end":
           return _context8.stop();
       }
-    }, _callee8, null, [[0, 7]]);
+    }, _callee8, null, [[1, 9]]);
   }));
   return function (_x13, _x14) {
     return _ref8.apply(this, arguments);
   };
 }());
 
-// Route to get a song by title
-app.get('/songTitle/:title', /*#__PURE__*/function () {
+// Route to get a song by ID
+app.get('/song/:id', /*#__PURE__*/function () {
   var _ref9 = _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee9(req, res) {
     var song;
     return _regeneratorRuntime().wrap(function _callee9$(_context9) {
@@ -348,7 +355,7 @@ app.get('/songTitle/:title', /*#__PURE__*/function () {
         case 0:
           _context9.prev = 0;
           _context9.next = 3;
-          return songs.findSongByTitle(req.params.title);
+          return songs.findSongById(req.params.id);
         case 3:
           song = _context9.sent;
           if (song) {
@@ -377,9 +384,8 @@ app.get('/songTitle/:title', /*#__PURE__*/function () {
   };
 }());
 
-// Route to get a song by spotify link
-
-app.post('/songLink', /*#__PURE__*/function () {
+// Route to get a song by title
+app.get('/songTitle/:title', /*#__PURE__*/function () {
   var _ref10 = _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee10(req, res) {
     var song;
     return _regeneratorRuntime().wrap(function _callee10$(_context10) {
@@ -387,7 +393,7 @@ app.post('/songLink', /*#__PURE__*/function () {
         case 0:
           _context10.prev = 0;
           _context10.next = 3;
-          return songs.findSongByLink(req.body.link);
+          return songs.findSongByTitle(req.params.title);
         case 3:
           song = _context10.sent;
           if (song) {
@@ -416,40 +422,20 @@ app.post('/songLink', /*#__PURE__*/function () {
   };
 }());
 
-/* 66f3f25e6e5551813edf1075  jtshanbalal63 
-Songs 
-    66f3e0756e5551813edf1067 
-    66f3e0756e5551813edf1068
-    66f3e0756e5551813edf106b
-   66f3f25e6e5551813edf1076  tomtheguy16
-   66f3f25e6e5551813edf1077   susanheartsmusic
-   66f3f25e6e5551813edf1078    1a1a1and
-   66f3e0756e5551813edf1069
-
-
-  66f3e0756e5551813edf106e
-   66f3e0756e5551813edf106d
-
-
-
-*/
-
-// Route to delete a song
-app["delete"]('/songs/:id', /*#__PURE__*/function () {
+// Route to get a song by spotify link
+app.post('/songLink', /*#__PURE__*/function () {
   var _ref11 = _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee11(req, res) {
-    var deleted;
+    var song;
     return _regeneratorRuntime().wrap(function _callee11$(_context11) {
       while (1) switch (_context11.prev = _context11.next) {
         case 0:
           _context11.prev = 0;
           _context11.next = 3;
-          return songs.deleteSong(req.params.id);
+          return songs.findSongByLink(req.body.link);
         case 3:
-          deleted = _context11.sent;
-          if (deleted) {
-            res.status(200).send({
-              message: 'Song successfully deleted'
-            });
+          song = _context11.sent;
+          if (song) {
+            res.status(200).send(song);
           } else {
             res.status(404).send({
               error: 'Song not found'
@@ -474,134 +460,168 @@ app["delete"]('/songs/:id', /*#__PURE__*/function () {
   };
 }());
 
-//*******************Playlist routes************************************
-// Route to insert a new playlist
-app.post('/addPlay', /*#__PURE__*/function () {
+/* 66f3f25e6e5551813edf1075  jtshanbalal63 
+Songs 
+    66f3e0756e5551813edf1067 
+    66f3e0756e5551813edf1068
+    66f3e0756e5551813edf106b
+   66f3f25e6e5551813edf1076  tomtheguy16
+   66f3f25e6e5551813edf1077   susanheartsmusic
+   66f3f25e6e5551813edf1078    1a1a1and
+   66f3e0756e5551813edf1069
+
+
+  66f3e0756e5551813edf106e
+   66f3e0756e5551813edf106d
+
+
+
+*/
+
+// Route to delete a song
+app["delete"]('/songs/:id', /*#__PURE__*/function () {
   var _ref12 = _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee12(req, res) {
-    var playId;
+    var deleted;
     return _regeneratorRuntime().wrap(function _callee12$(_context12) {
       while (1) switch (_context12.prev = _context12.next) {
         case 0:
           _context12.prev = 0;
           _context12.next = 3;
-          return playlists.insertPlay(req.body.playData);
+          return songs.deleteSong(req.params.id);
         case 3:
-          playId = _context12.sent;
-          res.status(201).send({
-            message: 'Playlist successfully created',
-            id: playId
-          });
-          console.log('Playlist successfully inserted with ID: ' + playId);
-          _context12.next = 11;
+          deleted = _context12.sent;
+          if (deleted) {
+            res.status(200).send({
+              message: 'Song successfully deleted'
+            });
+          } else {
+            res.status(404).send({
+              error: 'Song not found'
+            });
+          }
+          _context12.next = 10;
           break;
-        case 8:
-          _context12.prev = 8;
+        case 7:
+          _context12.prev = 7;
           _context12.t0 = _context12["catch"](0);
           res.status(500).send({
             error: _context12.t0.message
           });
-        case 11:
+        case 10:
         case "end":
           return _context12.stop();
       }
-    }, _callee12, null, [[0, 8]]);
+    }, _callee12, null, [[0, 7]]);
   }));
   return function (_x21, _x22) {
     return _ref12.apply(this, arguments);
   };
 }());
 
-// Route to get a playlist by ID
-app.get('/playlist/:id', /*#__PURE__*/function () {
-  var _ref13 = _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee13(req, res) {
-    var player;
-    return _regeneratorRuntime().wrap(function _callee13$(_context13) {
-      while (1) switch (_context13.prev = _context13.next) {
+//*******************Playlist routes************************************
+
+// Route to insert a new playlist
+app.post('/addPlay', /*#__PURE__*/function () {
+  var _ref13 = _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee14(req, res) {
+    var _req$body, playBio, playGenre, playName, playPic, playTags, playUser, playUserId, _songs, playData, playId, user, friendIds;
+    return _regeneratorRuntime().wrap(function _callee14$(_context14) {
+      while (1) switch (_context14.prev = _context14.next) {
         case 0:
-          _context13.prev = 0;
-          _context13.next = 3;
-          return playlists.findPlayById(req.params.id);
-        case 3:
-          player = _context13.sent;
-          if (player) {
-            res.status(200).send(player);
-          } else {
-            res.status(404).send({
-              error: 'Playlist not found'
-            });
-          }
-          _context13.next = 10;
-          break;
-        case 7:
-          _context13.prev = 7;
-          _context13.t0 = _context13["catch"](0);
-          res.status(500).send({
-            error: _context13.t0.message
+          _context14.prev = 0;
+          // Step 1: Create the new playlist in the Playlists collection
+          _req$body = req.body, playBio = _req$body.playBio, playGenre = _req$body.playGenre, playName = _req$body.playName, playPic = _req$body.playPic, playTags = _req$body.playTags, playUser = _req$body.playUser, playUserId = _req$body.playUserId, _songs = _req$body.songs;
+          playData = {
+            playBio: playBio,
+            playGenre: playGenre,
+            playName: playName,
+            playPic: playPic,
+            playTags: playTags,
+            playUser: playUser,
+            playUserId: playUserId,
+            songs: _songs
+          };
+          _context14.next = 5;
+          return playlists.insertPlay(playData);
+        case 5:
+          playId = _context14.sent;
+          console.log('Playlist successfully inserted with ID:', playId);
+
+          // Step 2: Fetch the user's friends from the Users collection
+          _context14.next = 9;
+          return users.findUserById(playUserId);
+        case 9:
+          user = _context14.sent;
+          friendIds = (user === null || user === void 0 ? void 0 : user.friends) || []; // Get the friend IDs array
+          // Step 3: For each friend, add the new playlist to their UserPlaylist collection
+          _context14.next = 13;
+          return Promise.all(friendIds.map(/*#__PURE__*/function () {
+            var _ref14 = _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee13(friendId) {
+              var friend, friendUserName, friendPlayData;
+              return _regeneratorRuntime().wrap(function _callee13$(_context13) {
+                while (1) switch (_context13.prev = _context13.next) {
+                  case 0:
+                    _context13.next = 2;
+                    return users.findUserById(friendId);
+                  case 2:
+                    friend = _context13.sent;
+                    friendUserName = (friend === null || friend === void 0 ? void 0 : friend.userName) || "Unknown"; // Default to "Unknown" if userName not found
+                    // Prepare play data for each friend's UserPlaylist
+                    friendPlayData = {
+                      userID: friendId,
+                      userName: friendUserName,
+                      // Use the friend's username
+                      playName: playName,
+                      playId: playId
+                    }; // Add or update the UserPlaylist for each friend
+                    _context13.next = 7;
+                    return userplaylists.insertOrUpdateUserPlay(friendPlayData);
+                  case 7:
+                  case "end":
+                    return _context13.stop();
+                }
+              }, _callee13);
+            }));
+            return function (_x25) {
+              return _ref14.apply(this, arguments);
+            };
+          }()));
+        case 13:
+          res.status(201).send({
+            message: 'Playlist successfully created and added to friends'
           });
-        case 10:
+          _context14.next = 20;
+          break;
+        case 16:
+          _context14.prev = 16;
+          _context14.t0 = _context14["catch"](0);
+          console.error(_context14.t0);
+          res.status(500).send({
+            error: _context14.t0.message
+          });
+        case 20:
         case "end":
-          return _context13.stop();
+          return _context14.stop();
       }
-    }, _callee13, null, [[0, 7]]);
+    }, _callee14, null, [[0, 16]]);
   }));
   return function (_x23, _x24) {
     return _ref13.apply(this, arguments);
   };
 }());
-
-// Route to get a playlist by name
-
-app.get('/playlistName/:playName', /*#__PURE__*/function () {
-  var _ref14 = _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee14(req, res) {
-    var play;
-    return _regeneratorRuntime().wrap(function _callee14$(_context14) {
-      while (1) switch (_context14.prev = _context14.next) {
-        case 0:
-          _context14.prev = 0;
-          _context14.next = 3;
-          return playlists.findPlayByName(req.params.playName);
-        case 3:
-          play = _context14.sent;
-          if (play) {
-            res.status(200).send(play);
-          } else {
-            res.status(404).send({
-              error: 'Playlist not found'
-            });
-          }
-          _context14.next = 10;
-          break;
-        case 7:
-          _context14.prev = 7;
-          _context14.t0 = _context14["catch"](0);
-          res.status(500).send({
-            error: _context14.t0.message
-          });
-        case 10:
-        case "end":
-          return _context14.stop();
-      }
-    }, _callee14, null, [[0, 7]]);
-  }));
-  return function (_x25, _x26) {
-    return _ref14.apply(this, arguments);
-  };
-}());
-
-// Route to get a playlist by username
-app.get('/playlistUser/:userName', /*#__PURE__*/function () {
+// Route to get a playlist by ID
+app.get('/playlist/:id/:saved', /*#__PURE__*/function () {
   var _ref15 = _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee15(req, res) {
-    var play;
+    var player;
     return _regeneratorRuntime().wrap(function _callee15$(_context15) {
       while (1) switch (_context15.prev = _context15.next) {
         case 0:
           _context15.prev = 0;
           _context15.next = 3;
-          return playlists.findPlayByUserName(req.params.userName);
+          return playlists.findPlayById(req.params.id, req.params.saved);
         case 3:
-          play = _context15.sent;
-          if (play) {
-            res.status(200).send(play);
+          player = _context15.sent;
+          if (player) {
+            res.status(200).send(player);
           } else {
             res.status(404).send({
               error: 'Playlist not found'
@@ -621,25 +641,25 @@ app.get('/playlistUser/:userName', /*#__PURE__*/function () {
       }
     }, _callee15, null, [[0, 7]]);
   }));
-  return function (_x27, _x28) {
+  return function (_x26, _x27) {
     return _ref15.apply(this, arguments);
   };
 }());
 
-// Route to get a playlist by userID
-app.get('/playlistUserID/:userID', /*#__PURE__*/function () {
+// Route to get a playlist by name
+app.get('/playlistName/:playName', /*#__PURE__*/function () {
   var _ref16 = _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee16(req, res) {
-    var player;
+    var play;
     return _regeneratorRuntime().wrap(function _callee16$(_context16) {
       while (1) switch (_context16.prev = _context16.next) {
         case 0:
           _context16.prev = 0;
           _context16.next = 3;
-          return playlists.findPlayByUserID(req.params.userID);
+          return playlists.findPlayByName(req.params.playName);
         case 3:
-          player = _context16.sent;
-          if (player) {
-            res.status(200).send(player);
+          play = _context16.sent;
+          if (play) {
+            res.status(200).send(play);
           } else {
             res.status(404).send({
               error: 'Playlist not found'
@@ -659,25 +679,25 @@ app.get('/playlistUserID/:userID', /*#__PURE__*/function () {
       }
     }, _callee16, null, [[0, 7]]);
   }));
-  return function (_x29, _x30) {
+  return function (_x28, _x29) {
     return _ref16.apply(this, arguments);
   };
 }());
 
-// Route to get a playlist by genre
-app.get('/playlistGenre/:genre', /*#__PURE__*/function () {
+// Route to get a playlist by username
+app.get('/playlistUser/:userName', /*#__PURE__*/function () {
   var _ref17 = _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee17(req, res) {
-    var player;
+    var play;
     return _regeneratorRuntime().wrap(function _callee17$(_context17) {
       while (1) switch (_context17.prev = _context17.next) {
         case 0:
           _context17.prev = 0;
           _context17.next = 3;
-          return playlists.findPlayByGenre(req.params.genre);
+          return playlists.findPlayByUserName(req.params.userName);
         case 3:
-          player = _context17.sent;
-          if (player) {
-            res.status(200).send(player);
+          play = _context17.sent;
+          if (play) {
+            res.status(200).send(play);
           } else {
             res.status(404).send({
               error: 'Playlist not found'
@@ -697,72 +717,63 @@ app.get('/playlistGenre/:genre', /*#__PURE__*/function () {
       }
     }, _callee17, null, [[0, 7]]);
   }));
-  return function (_x31, _x32) {
+  return function (_x30, _x31) {
     return _ref17.apply(this, arguments);
   };
 }());
 
-// Route to get a playlist by tags
-app.post('/playlistTags', /*#__PURE__*/function () {
+// Route to get a playlist by userID
+app.get('/playlistUserID/:userID', /*#__PURE__*/function () {
   var _ref18 = _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee18(req, res) {
-    var tags, player;
+    var player;
     return _regeneratorRuntime().wrap(function _callee18$(_context18) {
       while (1) switch (_context18.prev = _context18.next) {
         case 0:
           _context18.prev = 0;
-          tags = req.body.tags; // Ensure 'tags' is an array
-          if (Array.isArray(tags)) {
-            _context18.next = 4;
-            break;
-          }
-          throw new Error('Tags should be an array');
-        case 4:
-          _context18.next = 6;
-          return playlists.findPlayByTags(tags);
-        case 6:
+          _context18.next = 3;
+          return playlists.findPlayByUserID(req.params.userID);
+        case 3:
           player = _context18.sent;
           if (player) {
             res.status(200).send(player);
           } else {
             res.status(404).send({
-              error: 'No matching playlists found'
+              error: 'Playlist not found'
             });
           }
-          _context18.next = 13;
+          _context18.next = 10;
           break;
-        case 10:
-          _context18.prev = 10;
+        case 7:
+          _context18.prev = 7;
           _context18.t0 = _context18["catch"](0);
           res.status(500).send({
             error: _context18.t0.message
           });
-        case 13:
+        case 10:
         case "end":
           return _context18.stop();
       }
-    }, _callee18, null, [[0, 10]]);
+    }, _callee18, null, [[0, 7]]);
   }));
-  return function (_x33, _x34) {
+  return function (_x32, _x33) {
     return _ref18.apply(this, arguments);
   };
 }());
 
-// Route to update a playlists details
-app.put('/playlists/:id', /*#__PURE__*/function () {
+// Route to get a playlist by genre
+app.get('/playlistGenre/:genre', /*#__PURE__*/function () {
   var _ref19 = _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee19(req, res) {
-    var updated;
+    var player;
     return _regeneratorRuntime().wrap(function _callee19$(_context19) {
       while (1) switch (_context19.prev = _context19.next) {
         case 0:
           _context19.prev = 0;
           _context19.next = 3;
-          return playlists.updatePlay(req.params.id, req.body.playData);
+          return playlists.findPlayByGenre(req.params.genre);
         case 3:
-          updated = _context19.sent;
-          if (updated) {
-            res.status(200).send({
-              message: 'Playlist details successfully updated'
-            });
+          player = _context19.sent;
+          if (player) {
+            res.status(200).send(player);
           } else {
             res.status(404).send({
               error: 'Playlist not found'
@@ -782,23 +793,108 @@ app.put('/playlists/:id', /*#__PURE__*/function () {
       }
     }, _callee19, null, [[0, 7]]);
   }));
-  return function (_x35, _x36) {
+  return function (_x34, _x35) {
     return _ref19.apply(this, arguments);
+  };
+}());
+
+// Route to get a playlist by tags
+app.post('/playlistTags', /*#__PURE__*/function () {
+  var _ref20 = _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee20(req, res) {
+    var tags, player;
+    return _regeneratorRuntime().wrap(function _callee20$(_context20) {
+      while (1) switch (_context20.prev = _context20.next) {
+        case 0:
+          _context20.prev = 0;
+          tags = req.body.tags; // Ensure 'tags' is an array
+          if (Array.isArray(tags)) {
+            _context20.next = 4;
+            break;
+          }
+          throw new Error('Tags should be an array');
+        case 4:
+          _context20.next = 6;
+          return playlists.findPlayByTags(tags);
+        case 6:
+          player = _context20.sent;
+          if (player) {
+            res.status(200).send(player);
+          } else {
+            res.status(404).send({
+              error: 'No matching playlists found'
+            });
+          }
+          _context20.next = 13;
+          break;
+        case 10:
+          _context20.prev = 10;
+          _context20.t0 = _context20["catch"](0);
+          res.status(500).send({
+            error: _context20.t0.message
+          });
+        case 13:
+        case "end":
+          return _context20.stop();
+      }
+    }, _callee20, null, [[0, 10]]);
+  }));
+  return function (_x36, _x37) {
+    return _ref20.apply(this, arguments);
+  };
+}());
+
+// Route to update a playlists details
+app.put('/playlists/:id', /*#__PURE__*/function () {
+  var _ref21 = _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee21(req, res) {
+    var updated;
+    return _regeneratorRuntime().wrap(function _callee21$(_context21) {
+      while (1) switch (_context21.prev = _context21.next) {
+        case 0:
+          _context21.prev = 0;
+          _context21.next = 3;
+          return playlists.updatePlay(req.params.id, req.body.playData);
+        case 3:
+          updated = _context21.sent;
+          if (updated) {
+            res.status(200).send({
+              message: 'Playlist details successfully updated'
+            });
+          } else {
+            res.status(404).send({
+              error: 'Playlist not found'
+            });
+          }
+          _context21.next = 10;
+          break;
+        case 7:
+          _context21.prev = 7;
+          _context21.t0 = _context21["catch"](0);
+          res.status(500).send({
+            error: _context21.t0.message
+          });
+        case 10:
+        case "end":
+          return _context21.stop();
+      }
+    }, _callee21, null, [[0, 7]]);
+  }));
+  return function (_x38, _x39) {
+    return _ref21.apply(this, arguments);
   };
 }());
 
 // Route to delete a playlist
 app["delete"]('/playlists/:id', /*#__PURE__*/function () {
-  var _ref20 = _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee20(req, res) {
+  var _ref22 = _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee22(req, res) {
     var deleted;
-    return _regeneratorRuntime().wrap(function _callee20$(_context20) {
-      while (1) switch (_context20.prev = _context20.next) {
+    return _regeneratorRuntime().wrap(function _callee22$(_context22) {
+      while (1) switch (_context22.prev = _context22.next) {
         case 0:
-          _context20.prev = 0;
-          _context20.next = 3;
+          _context22.prev = 0;
+          _context22.next = 3;
           return playlists.deletePlay(req.params.id);
         case 3:
-          deleted = _context20.sent;
+          deleted = _context22.sent;
           if (deleted) {
             res.status(200).send({
               message: 'Playlist successfully deleted'
@@ -806,81 +902,6 @@ app["delete"]('/playlists/:id', /*#__PURE__*/function () {
           } else {
             res.status(404).send({
               error: 'Playlist not found'
-            });
-          }
-          _context20.next = 10;
-          break;
-        case 7:
-          _context20.prev = 7;
-          _context20.t0 = _context20["catch"](0);
-          res.status(500).send({
-            error: _context20.t0.message
-          });
-        case 10:
-        case "end":
-          return _context20.stop();
-      }
-    }, _callee20, null, [[0, 7]]);
-  }));
-  return function (_x37, _x38) {
-    return _ref20.apply(this, arguments);
-  };
-}());
-
-//*******************Comment routes************************************
-// Route to insert by comment
-app.post('/addComment', /*#__PURE__*/function () {
-  var _ref21 = _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee21(req, res) {
-    var commId;
-    return _regeneratorRuntime().wrap(function _callee21$(_context21) {
-      while (1) switch (_context21.prev = _context21.next) {
-        case 0:
-          _context21.prev = 0;
-          _context21.next = 3;
-          return comments.insertComment(req.body.commData);
-        case 3:
-          commId = _context21.sent;
-          res.status(201).send({
-            message: 'Comment successfully added',
-            id: commId
-          });
-          console.log('Comment successfully inserted with ID: ' + commId);
-          _context21.next = 11;
-          break;
-        case 8:
-          _context21.prev = 8;
-          _context21.t0 = _context21["catch"](0);
-          res.status(500).send({
-            error: _context21.t0.message
-          });
-        case 11:
-        case "end":
-          return _context21.stop();
-      }
-    }, _callee21, null, [[0, 8]]);
-  }));
-  return function (_x39, _x40) {
-    return _ref21.apply(this, arguments);
-  };
-}());
-
-// Route to get a comment by ID
-app.get('/comment/:id', /*#__PURE__*/function () {
-  var _ref22 = _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee22(req, res) {
-    var comm;
-    return _regeneratorRuntime().wrap(function _callee22$(_context22) {
-      while (1) switch (_context22.prev = _context22.next) {
-        case 0:
-          _context22.prev = 0;
-          _context22.next = 3;
-          return comments.findCommentById(req.params.id);
-        case 3:
-          comm = _context22.sent;
-          if (comm) {
-            res.status(200).send(comm);
-          } else {
-            res.status(404).send({
-              error: 'Comment not found'
             });
           }
           _context22.next = 10;
@@ -897,63 +918,63 @@ app.get('/comment/:id', /*#__PURE__*/function () {
       }
     }, _callee22, null, [[0, 7]]);
   }));
-  return function (_x41, _x42) {
+  return function (_x40, _x41) {
     return _ref22.apply(this, arguments);
   };
 }());
 
-// Route to get a comment by playlistID
-app.get('/commentPlay/:playId', /*#__PURE__*/function () {
+//*******************Comment routes************************************
+
+// Route to insert by comment
+app.post('/addComment', /*#__PURE__*/function () {
   var _ref23 = _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee23(req, res) {
-    var comm;
+    var commId;
     return _regeneratorRuntime().wrap(function _callee23$(_context23) {
       while (1) switch (_context23.prev = _context23.next) {
         case 0:
           _context23.prev = 0;
           _context23.next = 3;
-          return comments.findCommentByPlayId(req.params.playId);
+          return comments.insertComment(req.body.commData);
         case 3:
-          comm = _context23.sent;
-          if (comm) {
-            res.status(200).send(comm);
-          } else {
-            res.status(404).send({
-              error: 'Comment not found'
-            });
-          }
-          _context23.next = 10;
+          commId = _context23.sent;
+          res.status(201).send({
+            message: 'Comment successfully added',
+            id: commId
+          });
+          console.log('Comment successfully inserted with ID: ' + commId);
+          _context23.next = 11;
           break;
-        case 7:
-          _context23.prev = 7;
+        case 8:
+          _context23.prev = 8;
           _context23.t0 = _context23["catch"](0);
           res.status(500).send({
             error: _context23.t0.message
           });
-        case 10:
+        case 11:
         case "end":
           return _context23.stop();
       }
-    }, _callee23, null, [[0, 7]]);
+    }, _callee23, null, [[0, 8]]);
   }));
-  return function (_x43, _x44) {
+  return function (_x42, _x43) {
     return _ref23.apply(this, arguments);
   };
 }());
-app.put('/comment/:id', /*#__PURE__*/function () {
+
+// Route to get a comment by ID
+app.get('/comment/:id', /*#__PURE__*/function () {
   var _ref24 = _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee24(req, res) {
-    var updated;
+    var comm;
     return _regeneratorRuntime().wrap(function _callee24$(_context24) {
       while (1) switch (_context24.prev = _context24.next) {
         case 0:
           _context24.prev = 0;
           _context24.next = 3;
-          return comments.updateComment(req.params.id, req.body.commData);
+          return comments.findCommentById(req.params.id);
         case 3:
-          updated = _context24.sent;
-          if (updated) {
-            res.status(200).send({
-              message: 'Comment successfully updated'
-            });
+          comm = _context24.sent;
+          if (comm) {
+            res.status(200).send(comm);
           } else {
             res.status(404).send({
               error: 'Comment not found'
@@ -973,25 +994,25 @@ app.put('/comment/:id', /*#__PURE__*/function () {
       }
     }, _callee24, null, [[0, 7]]);
   }));
-  return function (_x45, _x46) {
+  return function (_x44, _x45) {
     return _ref24.apply(this, arguments);
   };
 }());
-app["delete"]('/comment/:id', /*#__PURE__*/function () {
+
+// Route to get a comment by playlistID
+app.get('/commentPlay/:playId', /*#__PURE__*/function () {
   var _ref25 = _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee25(req, res) {
-    var deleted;
+    var comm;
     return _regeneratorRuntime().wrap(function _callee25$(_context25) {
       while (1) switch (_context25.prev = _context25.next) {
         case 0:
           _context25.prev = 0;
           _context25.next = 3;
-          return comments.deleteComment(req.params.id);
+          return comments.findCommentByPlayId(req.params.playId);
         case 3:
-          deleted = _context25.sent;
-          if (deleted) {
-            res.status(200).send({
-              message: 'Comment successfully deleted'
-            });
+          comm = _context25.sent;
+          if (comm) {
+            res.status(200).send(comm);
           } else {
             res.status(404).send({
               error: 'Comment not found'
@@ -1011,116 +1032,195 @@ app["delete"]('/comment/:id', /*#__PURE__*/function () {
       }
     }, _callee25, null, [[0, 7]]);
   }));
-  return function (_x47, _x48) {
+  return function (_x46, _x47) {
     return _ref25.apply(this, arguments);
   };
 }());
-app.post('/user/:id/addSong', /*#__PURE__*/function () {
+app.put('/comment/:id', /*#__PURE__*/function () {
   var _ref26 = _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee26(req, res) {
-    var userID, songID, result;
+    var updated;
     return _regeneratorRuntime().wrap(function _callee26$(_context26) {
       while (1) switch (_context26.prev = _context26.next) {
         case 0:
-          userID = req.params.id;
-          songID = req.body.songID;
-          _context26.prev = 2;
-          _context26.next = 5;
-          return songlists.addSongToUserList(userID, songID);
-        case 5:
-          result = _context26.sent;
-          res.status(200).send(result);
-          _context26.next = 12;
+          _context26.prev = 0;
+          _context26.next = 3;
+          return comments.updateComment(req.params.id, req.body.commData);
+        case 3:
+          updated = _context26.sent;
+          if (updated) {
+            res.status(200).send({
+              message: 'Comment successfully updated'
+            });
+          } else {
+            res.status(404).send({
+              error: 'Comment not found'
+            });
+          }
+          _context26.next = 10;
           break;
-        case 9:
-          _context26.prev = 9;
-          _context26.t0 = _context26["catch"](2);
+        case 7:
+          _context26.prev = 7;
+          _context26.t0 = _context26["catch"](0);
           res.status(500).send({
             error: _context26.t0.message
           });
-        case 12:
+        case 10:
         case "end":
           return _context26.stop();
       }
-    }, _callee26, null, [[2, 9]]);
+    }, _callee26, null, [[0, 7]]);
   }));
-  return function (_x49, _x50) {
+  return function (_x48, _x49) {
     return _ref26.apply(this, arguments);
   };
 }());
-app.get('/user/songList/:id', /*#__PURE__*/function () {
+app["delete"]('/comment/:id', /*#__PURE__*/function () {
   var _ref27 = _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee27(req, res) {
-    var userID, songList;
+    var deleted;
     return _regeneratorRuntime().wrap(function _callee27$(_context27) {
       while (1) switch (_context27.prev = _context27.next) {
         case 0:
-          userID = req.params.id;
-          _context27.prev = 1;
-          _context27.next = 4;
-          return songlists.getUserSongList(userID);
-        case 4:
-          songList = _context27.sent;
-          res.status(200).send({
-            songs: songList.songs
-          });
-          _context27.next = 11;
+          _context27.prev = 0;
+          _context27.next = 3;
+          return comments.deleteComment(req.params.id);
+        case 3:
+          deleted = _context27.sent;
+          if (deleted) {
+            res.status(200).send({
+              message: 'Comment successfully deleted'
+            });
+          } else {
+            res.status(404).send({
+              error: 'Comment not found'
+            });
+          }
+          _context27.next = 10;
           break;
-        case 8:
-          _context27.prev = 8;
-          _context27.t0 = _context27["catch"](1);
+        case 7:
+          _context27.prev = 7;
+          _context27.t0 = _context27["catch"](0);
           res.status(500).send({
             error: _context27.t0.message
           });
-        case 11:
+        case 10:
         case "end":
           return _context27.stop();
       }
-    }, _callee27, null, [[1, 8]]);
+    }, _callee27, null, [[0, 7]]);
   }));
-  return function (_x51, _x52) {
+  return function (_x50, _x51) {
     return _ref27.apply(this, arguments);
   };
 }());
-app.get('/search', /*#__PURE__*/function () {
+
+//Route to add a song to a users songlist
+app.post('/user/:id/addSong', /*#__PURE__*/function () {
   var _ref28 = _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee28(req, res) {
-    var query, results;
+    var userID, songID, result;
     return _regeneratorRuntime().wrap(function _callee28$(_context28) {
       while (1) switch (_context28.prev = _context28.next) {
         case 0:
-          query = req.query.q;
-          _context28.prev = 1;
-          _context28.next = 4;
-          return searchAcrossCollections(query);
-        case 4:
-          results = _context28.sent;
-          res.status(200).send(results);
-          _context28.next = 11;
+          userID = req.params.id;
+          songID = req.body.songID;
+          _context28.prev = 2;
+          _context28.next = 5;
+          return songlists.addSongToUserList(userID, songID);
+        case 5:
+          result = _context28.sent;
+          res.status(200).send(result);
+          _context28.next = 12;
           break;
-        case 8:
-          _context28.prev = 8;
-          _context28.t0 = _context28["catch"](1);
+        case 9:
+          _context28.prev = 9;
+          _context28.t0 = _context28["catch"](2);
           res.status(500).send({
             error: _context28.t0.message
           });
-        case 11:
+        case 12:
         case "end":
           return _context28.stop();
       }
-    }, _callee28, null, [[1, 8]]);
+    }, _callee28, null, [[2, 9]]);
   }));
-  return function (_x53, _x54) {
+  return function (_x52, _x53) {
     return _ref28.apply(this, arguments);
   };
 }());
-function searchAcrossCollections(_x55) {
-  return _searchAcrossCollections.apply(this, arguments);
-}
-function _searchAcrossCollections() {
-  _searchAcrossCollections = _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee30(query) {
-    var songResults, userResults, playlistResults;
+app.get('/user/songList/:id', /*#__PURE__*/function () {
+  var _ref29 = _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee29(req, res) {
+    var userID, songList;
+    return _regeneratorRuntime().wrap(function _callee29$(_context29) {
+      while (1) switch (_context29.prev = _context29.next) {
+        case 0:
+          userID = req.params.id;
+          _context29.prev = 1;
+          _context29.next = 4;
+          return songlists.getUserSongList(userID);
+        case 4:
+          songList = _context29.sent;
+          res.status(200).send({
+            songs: songList.songs
+          });
+          _context29.next = 11;
+          break;
+        case 8:
+          _context29.prev = 8;
+          _context29.t0 = _context29["catch"](1);
+          res.status(500).send({
+            error: _context29.t0.message
+          });
+        case 11:
+        case "end":
+          return _context29.stop();
+      }
+    }, _callee29, null, [[1, 8]]);
+  }));
+  return function (_x54, _x55) {
+    return _ref29.apply(this, arguments);
+  };
+}());
+app.get('/search', /*#__PURE__*/function () {
+  var _ref30 = _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee30(req, res) {
+    var query, results;
     return _regeneratorRuntime().wrap(function _callee30$(_context30) {
       while (1) switch (_context30.prev = _context30.next) {
         case 0:
-          _context30.next = 2;
+          query = req.query.q;
+          _context30.prev = 1;
+          _context30.next = 4;
+          return searchAcrossCollections(query);
+        case 4:
+          results = _context30.sent;
+          res.status(200).send(results);
+          _context30.next = 11;
+          break;
+        case 8:
+          _context30.prev = 8;
+          _context30.t0 = _context30["catch"](1);
+          res.status(500).send({
+            error: _context30.t0.message
+          });
+        case 11:
+        case "end":
+          return _context30.stop();
+      }
+    }, _callee30, null, [[1, 8]]);
+  }));
+  return function (_x56, _x57) {
+    return _ref30.apply(this, arguments);
+  };
+}());
+function searchAcrossCollections(_x58) {
+  return _searchAcrossCollections.apply(this, arguments);
+} //*******************User Playlist routes************************************
+// Route to insert a new UserPlaylist document
+function _searchAcrossCollections() {
+  _searchAcrossCollections = _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee45(query) {
+    var songResults, userResults, playlistResults;
+    return _regeneratorRuntime().wrap(function _callee45$(_context45) {
+      while (1) switch (_context45.prev = _context45.next) {
+        case 0:
+          _context45.next = 2;
           return songs.collection.find({
             $or: [{
               songTitle: {
@@ -1135,8 +1235,8 @@ function _searchAcrossCollections() {
             }]
           }).toArray();
         case 2:
-          songResults = _context30.sent;
-          _context30.next = 5;
+          songResults = _context45.sent;
+          _context45.next = 5;
           return users.collection.find({
             $or: [{
               userName: {
@@ -1151,8 +1251,8 @@ function _searchAcrossCollections() {
             }]
           }).toArray();
         case 5:
-          userResults = _context30.sent;
-          _context30.next = 8;
+          userResults = _context45.sent;
+          _context45.next = 8;
           return playlists.collection.find({
             playName: {
               $regex: query,
@@ -1165,17 +1265,513 @@ function _searchAcrossCollections() {
             }
           }).toArray();
         case 8:
-          playlistResults = _context30.sent;
-          return _context30.abrupt("return", {
+          playlistResults = _context45.sent;
+          return _context45.abrupt("return", {
             songs: songResults,
             users: userResults,
             playlists: playlistResults
           });
         case 10:
         case "end":
-          return _context30.stop();
+          return _context45.stop();
       }
-    }, _callee30);
+    }, _callee45);
   }));
   return _searchAcrossCollections.apply(this, arguments);
 }
+app.post('/addUserPlay', /*#__PURE__*/function () {
+  var _ref31 = _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee31(req, res) {
+    var playId;
+    return _regeneratorRuntime().wrap(function _callee31$(_context31) {
+      while (1) switch (_context31.prev = _context31.next) {
+        case 0:
+          _context31.prev = 0;
+          _context31.next = 3;
+          return userplaylists.insertPlay(req.body.playData);
+        case 3:
+          playId = _context31.sent;
+          res.status(201).send({
+            message: 'Playlist successfully created',
+            id: playId
+          });
+          console.log('Playlist successfully inserted with ID: ' + playId);
+          _context31.next = 11;
+          break;
+        case 8:
+          _context31.prev = 8;
+          _context31.t0 = _context31["catch"](0);
+          res.status(500).send({
+            error: _context31.t0.message
+          });
+        case 11:
+        case "end":
+          return _context31.stop();
+      }
+    }, _callee31, null, [[0, 8]]);
+  }));
+  return function (_x59, _x60) {
+    return _ref31.apply(this, arguments);
+  };
+}());
+app.post('/user/createSongList', /*#__PURE__*/function () {
+  var _ref32 = _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee32(req, res) {
+    var _req$body2, userID, userName, songs, result;
+    return _regeneratorRuntime().wrap(function _callee32$(_context32) {
+      while (1) switch (_context32.prev = _context32.next) {
+        case 0:
+          _req$body2 = req.body, userID = _req$body2.userID, userName = _req$body2.userName, songs = _req$body2.songs;
+          _context32.prev = 1;
+          _context32.next = 4;
+          return songlists.insertSongList({
+            userID: userID,
+            userName: userName,
+            songs: songs
+          });
+        case 4:
+          result = _context32.sent;
+          res.status(201).json({
+            message: result
+          });
+          _context32.next = 12;
+          break;
+        case 8:
+          _context32.prev = 8;
+          _context32.t0 = _context32["catch"](1);
+          console.error("Error creating song list:", _context32.t0);
+          res.status(500).json({
+            error: "Failed to create song list"
+          });
+        case 12:
+        case "end":
+          return _context32.stop();
+      }
+    }, _callee32, null, [[1, 8]]);
+  }));
+  return function (_x61, _x62) {
+    return _ref32.apply(this, arguments);
+  };
+}());
+// Route to get a playlist by ID
+app.get('/userPlaylist/:id', /*#__PURE__*/function () {
+  var _ref33 = _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee33(req, res) {
+    var player;
+    return _regeneratorRuntime().wrap(function _callee33$(_context33) {
+      while (1) switch (_context33.prev = _context33.next) {
+        case 0:
+          _context33.prev = 0;
+          _context33.next = 3;
+          return userplaylists.findPlayById(req.params.id);
+        case 3:
+          player = _context33.sent;
+          if (player) {
+            res.status(200).send(player);
+          } else {
+            res.status(404).send({
+              error: 'Playlist not found'
+            });
+          }
+          _context33.next = 10;
+          break;
+        case 7:
+          _context33.prev = 7;
+          _context33.t0 = _context33["catch"](0);
+          res.status(500).send({
+            error: _context33.t0.message
+          });
+        case 10:
+        case "end":
+          return _context33.stop();
+      }
+    }, _callee33, null, [[0, 7]]);
+  }));
+  return function (_x63, _x64) {
+    return _ref33.apply(this, arguments);
+  };
+}());
+
+// Route to get a playlist by name
+app.get('/userPlaylistName/:playName', /*#__PURE__*/function () {
+  var _ref34 = _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee34(req, res) {
+    var playName, playlist, play;
+    return _regeneratorRuntime().wrap(function _callee34$(_context34) {
+      while (1) switch (_context34.prev = _context34.next) {
+        case 0:
+          _context34.prev = 0;
+          playName = req.params.playName; // Query to find a playlist where at least one play within `plays` has a matching name
+          _context34.next = 4;
+          return userplaylists.collection.findOne({
+            'plays.name': playName
+          }, {
+            projection: {
+              plays: {
+                $elemMatch: {
+                  name: playName
+                }
+              } // Retrieve only the matched play within `plays`
+            }
+          });
+        case 4:
+          playlist = _context34.sent;
+          if (playlist && playlist.plays.length > 0) {
+            play = playlist.plays[0]; // Since we matched only one play, it will be the first element in the array
+            res.status(200).send(play);
+          } else {
+            res.status(404).send({
+              error: 'Playlist not found'
+            });
+          }
+          _context34.next = 11;
+          break;
+        case 8:
+          _context34.prev = 8;
+          _context34.t0 = _context34["catch"](0);
+          res.status(500).send({
+            error: _context34.t0.message
+          });
+        case 11:
+        case "end":
+          return _context34.stop();
+      }
+    }, _callee34, null, [[0, 8]]);
+  }));
+  return function (_x65, _x66) {
+    return _ref34.apply(this, arguments);
+  };
+}());
+
+// Route to get a playlist by username
+app.get('/userPlaylistUser/:userName', /*#__PURE__*/function () {
+  var _ref35 = _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee35(req, res) {
+    var play;
+    return _regeneratorRuntime().wrap(function _callee35$(_context35) {
+      while (1) switch (_context35.prev = _context35.next) {
+        case 0:
+          _context35.prev = 0;
+          _context35.next = 3;
+          return userplaylists.findPlayByUserName(req.params.userName);
+        case 3:
+          play = _context35.sent;
+          if (play) {
+            res.status(200).send(play);
+          } else {
+            res.status(404).send({
+              error: 'Playlist not found'
+            });
+          }
+          _context35.next = 10;
+          break;
+        case 7:
+          _context35.prev = 7;
+          _context35.t0 = _context35["catch"](0);
+          res.status(500).send({
+            error: _context35.t0.message
+          });
+        case 10:
+        case "end":
+          return _context35.stop();
+      }
+    }, _callee35, null, [[0, 7]]);
+  }));
+  return function (_x67, _x68) {
+    return _ref35.apply(this, arguments);
+  };
+}());
+
+// Route to get a playlist by userID
+app.get('/userPlaylistUserID/:userID', /*#__PURE__*/function () {
+  var _ref36 = _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee36(req, res) {
+    var player;
+    return _regeneratorRuntime().wrap(function _callee36$(_context36) {
+      while (1) switch (_context36.prev = _context36.next) {
+        case 0:
+          _context36.prev = 0;
+          _context36.next = 3;
+          return userplaylists.findPlayByUserID(req.params.userID);
+        case 3:
+          player = _context36.sent;
+          if (player) {
+            res.status(200).send(player);
+          } else {
+            res.status(404).send({
+              error: 'Playlist not found'
+            });
+          }
+          _context36.next = 10;
+          break;
+        case 7:
+          _context36.prev = 7;
+          _context36.t0 = _context36["catch"](0);
+          res.status(500).send({
+            error: _context36.t0.message
+          });
+        case 10:
+        case "end":
+          return _context36.stop();
+      }
+    }, _callee36, null, [[0, 7]]);
+  }));
+  return function (_x69, _x70) {
+    return _ref36.apply(this, arguments);
+  };
+}());
+
+// Route to get a playlist by genre
+app.get('/userPlaylistGenre/:genre', /*#__PURE__*/function () {
+  var _ref37 = _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee37(req, res) {
+    var player;
+    return _regeneratorRuntime().wrap(function _callee37$(_context37) {
+      while (1) switch (_context37.prev = _context37.next) {
+        case 0:
+          _context37.prev = 0;
+          _context37.next = 3;
+          return userplaylists.findPlayByGenre(req.params.genre);
+        case 3:
+          player = _context37.sent;
+          if (player) {
+            res.status(200).send(player);
+          } else {
+            res.status(404).send({
+              error: 'Playlist not found'
+            });
+          }
+          _context37.next = 10;
+          break;
+        case 7:
+          _context37.prev = 7;
+          _context37.t0 = _context37["catch"](0);
+          res.status(500).send({
+            error: _context37.t0.message
+          });
+        case 10:
+        case "end":
+          return _context37.stop();
+      }
+    }, _callee37, null, [[0, 7]]);
+  }));
+  return function (_x71, _x72) {
+    return _ref37.apply(this, arguments);
+  };
+}());
+
+// Route to get a playlist by tags
+app.post('/userPlaylistTags', /*#__PURE__*/function () {
+  var _ref38 = _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee38(req, res) {
+    var tags, player;
+    return _regeneratorRuntime().wrap(function _callee38$(_context38) {
+      while (1) switch (_context38.prev = _context38.next) {
+        case 0:
+          _context38.prev = 0;
+          tags = req.body.tags; // Ensure 'tags' is an array
+          if (Array.isArray(tags)) {
+            _context38.next = 4;
+            break;
+          }
+          throw new Error('Tags should be an array');
+        case 4:
+          _context38.next = 6;
+          return userplaylists.findPlayByTags(tags);
+        case 6:
+          player = _context38.sent;
+          if (player) {
+            res.status(200).send(player);
+          } else {
+            res.status(404).send({
+              error: 'No matching playlists found'
+            });
+          }
+          _context38.next = 13;
+          break;
+        case 10:
+          _context38.prev = 10;
+          _context38.t0 = _context38["catch"](0);
+          res.status(500).send({
+            error: _context38.t0.message
+          });
+        case 13:
+        case "end":
+          return _context38.stop();
+      }
+    }, _callee38, null, [[0, 10]]);
+  }));
+  return function (_x73, _x74) {
+    return _ref38.apply(this, arguments);
+  };
+}());
+
+// Route to update a playlists details
+app.put('/userPlaylists/:id', /*#__PURE__*/function () {
+  var _ref39 = _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee39(req, res) {
+    var updated;
+    return _regeneratorRuntime().wrap(function _callee39$(_context39) {
+      while (1) switch (_context39.prev = _context39.next) {
+        case 0:
+          _context39.prev = 0;
+          _context39.next = 3;
+          return userplaylists.updateUserPlay(req.params.id, req.body.playData);
+        case 3:
+          updated = _context39.sent;
+          if (updated) {
+            res.status(200).send({
+              message: 'Playlist details successfully updated'
+            });
+          } else {
+            res.status(404).send({
+              error: 'Playlist not found'
+            });
+          }
+          _context39.next = 10;
+          break;
+        case 7:
+          _context39.prev = 7;
+          _context39.t0 = _context39["catch"](0);
+          res.status(500).send({
+            error: _context39.t0.message
+          });
+        case 10:
+        case "end":
+          return _context39.stop();
+      }
+    }, _callee39, null, [[0, 7]]);
+  }));
+  return function (_x75, _x76) {
+    return _ref39.apply(this, arguments);
+  };
+}());
+
+// Route to delete a playlist
+app["delete"]('/userPlaylists/:id', /*#__PURE__*/function () {
+  var _ref40 = _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee40(req, res) {
+    var deleted;
+    return _regeneratorRuntime().wrap(function _callee40$(_context40) {
+      while (1) switch (_context40.prev = _context40.next) {
+        case 0:
+          _context40.prev = 0;
+          _context40.next = 3;
+          return userplaylists.deletePlay(req.params.id);
+        case 3:
+          deleted = _context40.sent;
+          if (deleted) {
+            res.status(200).send({
+              message: 'Playlist successfully deleted'
+            });
+          } else {
+            res.status(404).send({
+              error: 'Playlist not found'
+            });
+          }
+          _context40.next = 10;
+          break;
+        case 7:
+          _context40.prev = 7;
+          _context40.t0 = _context40["catch"](0);
+          res.status(500).send({
+            error: _context40.t0.message
+          });
+        case 10:
+        case "end":
+          return _context40.stop();
+      }
+    }, _callee40, null, [[0, 7]]);
+  }));
+  return function (_x77, _x78) {
+    return _ref40.apply(this, arguments);
+  };
+}());
+
+//images 
+app.post('/api/images', /*#__PURE__*/function () {
+  var _ref41 = _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee41(req, res) {
+    var response;
+    return _regeneratorRuntime().wrap(function _callee41$(_context41) {
+      while (1) switch (_context41.prev = _context41.next) {
+        case 0:
+          _context41.prev = 0;
+          _context41.next = 3;
+          return images.insertImage(req.body);
+        case 3:
+          response = _context41.sent;
+          res.status(201).json({
+            message: response
+          });
+          _context41.next = 10;
+          break;
+        case 7:
+          _context41.prev = 7;
+          _context41.t0 = _context41["catch"](0);
+          res.status(400).json({
+            error: _context41.t0.message
+          });
+        case 10:
+        case "end":
+          return _context41.stop();
+      }
+    }, _callee41, null, [[0, 7]]);
+  }));
+  return function (_x79, _x80) {
+    return _ref41.apply(this, arguments);
+  };
+}());
+app.get('/api/images/:name', /*#__PURE__*/function () {
+  var _ref42 = _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee42(req, res) {
+    var image;
+    return _regeneratorRuntime().wrap(function _callee42$(_context42) {
+      while (1) switch (_context42.prev = _context42.next) {
+        case 0:
+          _context42.prev = 0;
+          _context42.next = 3;
+          return images.findImageByName(req.params.name);
+        case 3:
+          image = _context42.sent;
+          res.json({
+            rep: image.rep
+          });
+          _context42.next = 10;
+          break;
+        case 7:
+          _context42.prev = 7;
+          _context42.t0 = _context42["catch"](0);
+          res.status(404).json({
+            error: _context42.t0.message
+          });
+        case 10:
+        case "end":
+          return _context42.stop();
+      }
+    }, _callee42, null, [[0, 7]]);
+  }));
+  return function (_x81, _x82) {
+    return _ref42.apply(this, arguments);
+  };
+}());
+app["delete"]('/api/images/:name', /*#__PURE__*/function () {
+  var _ref43 = _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee43(req, res) {
+    var response;
+    return _regeneratorRuntime().wrap(function _callee43$(_context43) {
+      while (1) switch (_context43.prev = _context43.next) {
+        case 0:
+          _context43.prev = 0;
+          _context43.next = 3;
+          return images.deleteImageByName(req.params.name);
+        case 3:
+          response = _context43.sent;
+          res.json({
+            message: response
+          });
+          _context43.next = 10;
+          break;
+        case 7:
+          _context43.prev = 7;
+          _context43.t0 = _context43["catch"](0);
+          res.status(404).json({
+            error: _context43.t0.message
+          });
+        case 10:
+        case "end":
+          return _context43.stop();
+      }
+    }, _callee43, null, [[0, 7]]);
+  }));
+  return function (_x83, _x84) {
+    return _ref43.apply(this, arguments);
+  };
+}());

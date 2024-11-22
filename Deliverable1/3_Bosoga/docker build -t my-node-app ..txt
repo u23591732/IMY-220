@@ -1,0 +1,6 @@
+docker commands
+
+docker-compose up --build
+
+connection string details
+MONGO_URL=mongodb+srv://IMYuser:Eduplex2023@cluster0.1zrlw.mongodb.net/ 
