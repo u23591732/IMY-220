@@ -1,0 +1,11 @@
+{
+  "Version": 1,
+  "Hash": "hCE2MI8VP/BnI2Xp4S/jnTzAT27MoRa2v6dZoQAw4Rg=",
+  "Source": "ApplicationSecurity_Backend",
+  "BasePath": "_content/ApplicationSecurity_Backend",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": []
+}

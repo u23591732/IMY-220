@@ -1,0 +1,198 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "D:\\Users\\NEO\\Desktop\\INF354\\AppSecurity\\app sec\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\Users\\NEO\\Desktop\\INF354\\AppSecurity\\app sec\\ApplicationSecurity_Backend.csproj.user||{FA3CD31E-987B-443A-9B81-186104E8DAC1}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:ApplicationSecurity_Backend.csproj.user||{FA3CD31E-987B-443A-9B81-186104E8DAC1}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\Users\\NEO\\Desktop\\INF354\\AppSecurity\\app sec\\ApplicationSecurity_Backend.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:ApplicationSecurity_Backend.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\Users\\NEO\\Desktop\\INF354\\AppSecurity\\app sec\\Models\\Repository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Models\\Repository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\Users\\NEO\\Desktop\\INF354\\AppSecurity\\app sec\\Models\\IRepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Models\\IRepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\Users\\NEO\\Desktop\\INF354\\AppSecurity\\app sec\\Models\\Course.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Models\\Course.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\Users\\NEO\\Desktop\\INF354\\AppSecurity\\app sec\\Models\\AppUser.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Models\\AppUser.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\Users\\NEO\\Desktop\\INF354\\AppSecurity\\app sec\\Models\\AppDbContext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Models\\AppDbContext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\Users\\NEO\\Desktop\\INF354\\AppSecurity\\app sec\\Factory\\AppUserClaimsPrincipalFactory.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Factory\\AppUserClaimsPrincipalFactory.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\Users\\NEO\\Desktop\\INF354\\AppSecurity\\app sec\\Controllers\\WeatherForecastController.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Controllers\\WeatherForecastController.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\Users\\NEO\\Desktop\\INF354\\AppSecurity\\app sec\\Controllers\\CourseController.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Controllers\\CourseController.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "ApplicationSecurity_Backend.csproj.user",
+              "DocumentMoniker": "D:\\Users\\NEO\\Desktop\\INF354\\AppSecurity\\app sec\\ApplicationSecurity_Backend.csproj.user",
+              "RelativeDocumentMoniker": "ApplicationSecurity_Backend.csproj.user",
+              "ToolTip": "D:\\Users\\NEO\\Desktop\\INF354\\AppSecurity\\app sec\\ApplicationSecurity_Backend.csproj.user",
+              "RelativeToolTip": "ApplicationSecurity_Backend.csproj.user",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003464|",
+              "WhenOpened": "2025-06-11T11:09:51.919Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "ApplicationSecurity_Backend.csproj",
+              "DocumentMoniker": "D:\\Users\\NEO\\Desktop\\INF354\\AppSecurity\\app sec\\ApplicationSecurity_Backend.csproj",
+              "RelativeDocumentMoniker": "ApplicationSecurity_Backend.csproj",
+              "ToolTip": "D:\\Users\\NEO\\Desktop\\INF354\\AppSecurity\\app sec\\ApplicationSecurity_Backend.csproj",
+              "RelativeToolTip": "ApplicationSecurity_Backend.csproj",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
+              "WhenOpened": "2025-06-11T11:09:37.161Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "AppUser.cs",
+              "DocumentMoniker": "D:\\Users\\NEO\\Desktop\\INF354\\AppSecurity\\app sec\\Models\\AppUser.cs",
+              "RelativeDocumentMoniker": "Models\\AppUser.cs",
+              "ToolTip": "D:\\Users\\NEO\\Desktop\\INF354\\AppSecurity\\app sec\\Models\\AppUser.cs",
+              "RelativeToolTip": "Models\\AppUser.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAgAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-11T10:52:49.419Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "AppUserClaimsPrincipalFactory.cs",
+              "DocumentMoniker": "D:\\Users\\NEO\\Desktop\\INF354\\AppSecurity\\app sec\\Factory\\AppUserClaimsPrincipalFactory.cs",
+              "RelativeDocumentMoniker": "Factory\\AppUserClaimsPrincipalFactory.cs",
+              "ToolTip": "D:\\Users\\NEO\\Desktop\\INF354\\AppSecurity\\app sec\\Factory\\AppUserClaimsPrincipalFactory.cs",
+              "RelativeToolTip": "Factory\\AppUserClaimsPrincipalFactory.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABEAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-11T10:52:35.402Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "AppDbContext.cs",
+              "DocumentMoniker": "D:\\Users\\NEO\\Desktop\\INF354\\AppSecurity\\app sec\\Models\\AppDbContext.cs",
+              "RelativeDocumentMoniker": "Models\\AppDbContext.cs",
+              "ToolTip": "D:\\Users\\NEO\\Desktop\\INF354\\AppSecurity\\app sec\\Models\\AppDbContext.cs",
+              "RelativeToolTip": "Models\\AppDbContext.cs",
+              "ViewState": "AQIAAHkAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-11T10:52:53.828Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "Course.cs",
+              "DocumentMoniker": "D:\\Users\\NEO\\Desktop\\INF354\\AppSecurity\\app sec\\Models\\Course.cs",
+              "RelativeDocumentMoniker": "Models\\Course.cs",
+              "ToolTip": "D:\\Users\\NEO\\Desktop\\INF354\\AppSecurity\\app sec\\Models\\Course.cs",
+              "RelativeToolTip": "Models\\Course.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAoAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-11T10:52:51.796Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "IRepository.cs",
+              "DocumentMoniker": "D:\\Users\\NEO\\Desktop\\INF354\\AppSecurity\\app sec\\Models\\IRepository.cs",
+              "RelativeDocumentMoniker": "Models\\IRepository.cs",
+              "ToolTip": "D:\\Users\\NEO\\Desktop\\INF354\\AppSecurity\\app sec\\Models\\IRepository.cs",
+              "RelativeToolTip": "Models\\IRepository.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAcAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-11T10:55:41.5Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Repository.cs",
+              "DocumentMoniker": "D:\\Users\\NEO\\Desktop\\INF354\\AppSecurity\\app sec\\Models\\Repository.cs",
+              "RelativeDocumentMoniker": "Models\\Repository.cs",
+              "ToolTip": "D:\\Users\\NEO\\Desktop\\INF354\\AppSecurity\\app sec\\Models\\Repository.cs",
+              "RelativeToolTip": "Models\\Repository.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABIAAAAJAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-11T10:55:43.631Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "WeatherForecastController.cs",
+              "DocumentMoniker": "D:\\Users\\NEO\\Desktop\\INF354\\AppSecurity\\app sec\\Controllers\\WeatherForecastController.cs",
+              "RelativeDocumentMoniker": "Controllers\\WeatherForecastController.cs",
+              "ToolTip": "D:\\Users\\NEO\\Desktop\\INF354\\AppSecurity\\app sec\\Controllers\\WeatherForecastController.cs",
+              "RelativeToolTip": "Controllers\\WeatherForecastController.cs",
+              "ViewState": "AQIAACAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-11T11:05:49.861Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "CourseController.cs",
+              "DocumentMoniker": "D:\\Users\\NEO\\Desktop\\INF354\\AppSecurity\\app sec\\Controllers\\CourseController.cs",
+              "RelativeDocumentMoniker": "Controllers\\CourseController.cs",
+              "ToolTip": "D:\\Users\\NEO\\Desktop\\INF354\\AppSecurity\\app sec\\Controllers\\CourseController.cs",
+              "RelativeToolTip": "Controllers\\CourseController.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAsAAAASAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-11T09:04:54.29Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{34e76e81-ee4a-11d0-ae2e-00a0c90fffc3}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{0ad07096-bba9-4900-a651-0598d26f6d24}"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

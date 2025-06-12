@@ -1,0 +1,17 @@
+<div class="container mt-4 p-4 bg-light rounded shadow">
+    <h2 class="text-center text-success">Add Product</h2>
+    <form (ngSubmit)="addProduct()" #addProductForm="ngForm">
+      <div class="mb-3">
+        <input type="text" [(ngModel)]="newProduct.name" name="name" class="form-control" placeholder="Product Name" required>
+      </div>
+      <div class="mb-3">
+        <input type="text" [(ngModel)]="newProduct.description" name="description" class="form-control" placeholder="Description" required>
+      </div>
+      <div class="mb-3">
+        <input type="number" [(ngModel)]="newProduct.price" name="price" class="form-control" placeholder="Price" required>
+      </div>
+      <button type="submit" class="btn btn-success">Add Product</button>
+      <a routerLink="/products" class="btn btn-secondary ms-2">Cancel</a>
+    </form>
+  </div>
+  
